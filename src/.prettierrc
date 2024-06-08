@@ -1,0 +1,39 @@
+{
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": "*.tsx",
+      "options": {
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto",
+            "useTabs": false,
+            "semi": true,
+            "singleQuote": false,
+            "quoteProps": "as-needed",
+            "jsxSingleQuote": false,
+            "trailingComma": "all",
+            "bracketSpacing": true,
+            "jsxBracketSameLine": false,
+            "arrowParens": "always",
+            "insertPragma": false,
+            "tabWidth": 2,
+            "printWidth": 80,
+            "requirePragma": false,
+            "overrides": [
+              {
+                "files": "*.tsx",
+                "options": {
+                  "prettier/prettier": [
+                    "off"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
