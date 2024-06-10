@@ -39,7 +39,6 @@ const SingUpForm: React.FC<SingUpFormProps> = ({ toggleForm }): JSX.Element => {
       <SingupLinker onClick={toggleForm}>
         <h3>Already have an account?</h3>
       </SingupLinker>
-      <button type="submit">Sign Up</button>
       <Imagecontainer src={approved} />
     </FormContainer>
   );

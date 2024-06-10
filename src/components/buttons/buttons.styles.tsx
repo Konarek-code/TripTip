@@ -1,30 +1,86 @@
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 export const BaseButton = styled.button`
-  background-color: #fbeee0;
-  border: 2px solid #422800;
-  border-radius: 30px;
-  box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed";
+  font-weight: bolder;
+  border: none;
   cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 13px;
-  padding: 0 18px;
-  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+`;
+
+export const GoogleSignInButton = styled(BaseButton)`
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: WHITE;
+  background-image: none;
+  border: 1px solid #747775;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: "Roboto", arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  overflow: hidden;
+  padding: 0 12px;
+  position: relative;
   text-align: center;
-  text-decoration: none;
-  touch-action: manipulation;
-  &hover {
-    background: linear-gradient(90deg, #03a9f4, #f441a5);
-    filter: blur(1.2em);
+  -webkit-transition:
+    background-color 0.218s,
+    border-color 0.218s,
+    box-shadow 0.218s;
+  transition:
+    background-color 0.218s,
+    border-color 0.218s,
+    box-shadow 0.218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  max-width: 400px;
+  min-width: min-content;
+  &:hover {
+    background-color: #357ae8;
+    border: none;
   }
-
-  &active {
-    box-shadow: #422800 2px 2px 0 0;
-    transform: translate(2px, 2px);
+  img {
+    height: 20px;
+    margin-right: 12px;
+    min-width: 20px;
+    width: 20px;
   }
+`;
 
-  @media (min-width: 768px) {
+export const InvertedButton = styled(BaseButton)`
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+
+  &:hover {
+    background-color: black;
+    color: white;
+    border: none;
   }
 `;

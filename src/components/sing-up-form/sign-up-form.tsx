@@ -25,17 +25,7 @@ export const FormContainer = styled.form`
 
         margin: 200px 3 00px;
       }
-      button{
-        margin: 10px 350px;
-        width:300px;
-        height:300px;
-        text-style: color;
-        border-radius:50px;
-        background-color: blue;
-        color:white;
-        font-weight: bold;
-        font-size: 22px;
-      }
+     
 `;
 
 export const SingupLinker = styled.button`

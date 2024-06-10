@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+
 import { InputHTMLAttributes, FC } from "react";
 
 import { FormInputLabel, Input, Group } from "./form-input.style";
