@@ -30,6 +30,9 @@ export const FooterList: React.FC = () => {
         <FooterLink href="https://www.flaticon.com/free-icons/final">
           Final icons created by Freepik - Flaticon
         </FooterLink>
+        <FooterLink href="https://www.flaticon.com/free-icons/login">
+          Login icons created by Uniconlabs - Flaticon
+        </FooterLink>
       </Column>
       <Column>
         <Heading>Contact Us</Heading>

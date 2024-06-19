@@ -8,7 +8,7 @@ export const FormContainer = styled.form`
     background-color:#f4ecd9 ;
     justify-content:center
     padding: 10px auto;
-    margin: 30px 650px;
+    margin: 30px auto;
     border: double;
     border-radius: 10px;
     box-shadow: 3px 3px 3px 3px black;
@@ -17,26 +17,30 @@ export const FormContainer = styled.form`
       padding:5px;
       margin-left: 350px;
     }
-    @media (max-width: 930px) {
-        margin: 30px 100px;
+    @media (max-width: 800px) {
+        width:350px;
       }
 
-     @media (max-width: 1400px) {
-
-        margin: 200px 3 00px;
-      }
      Button{
-     margin-left: 360px;
+     margin-left: 370px;
+     margin-top: 10px;
      width:280px;
+     @media (max-width: 800px) {
+      margin:15px auto;
+      }
      }
 `;
 
 export const SingupLinker = styled.a`
-  margin: 20px 400px;
+  margin: 5px 400px;
   width: 300px;
   font-size: 14px;
   color: grey;
   cursor: pointer;
+  @media (max-width: 800px) {
+    margin: 15px auto;
+    width: 200px;
+  }
 `;
 
 export const LabelTitle = styled.label`
@@ -46,6 +50,10 @@ export const LabelTitle = styled.label`
   right: 160px;
   font-size: 36px;
   font-weight: bold;
+
+  @media (max-width: 800px) {
+    right: 275px;
+  }
 `;
 
 export const Imagecontainer = styled.img`
@@ -53,7 +61,10 @@ export const Imagecontainer = styled.img`
   height: 100px;
   width: 100px;
   left: 30px;
-  bottom: 40px;
+  bottom: 60px;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const StampImage = styled.img`
@@ -62,6 +73,13 @@ export const StampImage = styled.img`
   left:570px;
   height:100px;
   width:100px;
+
+  @media (max-width: 800px) {
+      height:70px;
+    width:70px;
+        top:-80px;
+         left:260px;
+      }
 }`;
 
 export const LettersImage = styled.img`
@@ -70,4 +88,7 @@ export const LettersImage = styled.img`
   left:50px;
   height:100px;
   width:250px;
+    @media (max-width: 800px) {
+        display:none
+      }
 }`;

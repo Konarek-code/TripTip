@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
+  position: relative; /* Dodajemy position: relative */
   display: flex;
-  padding: 100px 300px;
+  margin: 30px 100px;
   height: 100%;
   align-items: center;
   justify-content: center;
+  padding-bottom: 200px;
+  flex-direction: column;
 `;
 
 export const ImageContainer = styled(Link)`
@@ -34,14 +37,14 @@ export const ImageContainer = styled(Link)`
   }
   h3 {
     background-color: #ffa500;
-    color: white; /* Dodałem kolor tekstu, aby był czytelny */
+    color: white;
     border-radius: 30px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
-    padding: 10px; /* Opcjonalne - dodaje trochę przestrzeni wokół tekstu */
+    padding: 10px;
     opacity: 0;
     transition: opacity 0.5s ease;
   }

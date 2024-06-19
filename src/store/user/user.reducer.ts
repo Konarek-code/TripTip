@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export type User = {
+  id: string;
+  email: string;
+};
 export type UserState = {
-  readonly currentUser: null;
+  readonly currentUser: User | null;
   readonly isLoading: boolean;
   readonly error: Error | null;
 };
@@ -19,9 +23,12 @@ export const userSlice = createSlice({
     setCurrentUser(state, action) {
       state.currentUser = action.payload;
     },
+    logout: (state) => {
+      state.currentUser = null;
+    },
   },
 });
 
-export const { setCurrentUser } = userSlice.actions;
+export const { setCurrentUser, logout } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

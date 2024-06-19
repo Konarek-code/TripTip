@@ -4,6 +4,7 @@ import FormInput from "../from-input/form-input.component";
 import stamp from "../../assets/stamp.png";
 import approved from "../../assets/approved_15433170.png";
 import Letters from "../../assets/Letters.png";
+import Button from "../buttons/button.component";
 import {
   FormContainer,
   LabelTitle,
@@ -33,8 +34,10 @@ const SingUpForm: React.FC<SingUpFormProps> = ({ toggleForm }): JSX.Element => {
       <LettersImage src={Letters} />
       <StampImage src={stamp} alt="airplane icon" />
       <form>
+        <FormInput label="Name" type="name" required />
         <FormInput {...register("email")} label="Email" type="email" required />
         <FormInput label="Password" type="password" required />
+        <Button type="submit">Sign Up</Button>
       </form>
       <SingupLinker onClick={toggleForm}>
         <h3>Already have an account?</h3>

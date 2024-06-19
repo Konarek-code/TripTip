@@ -13,11 +13,22 @@ export const BaseButton = styled.button`
   text-transform: uppercase;
   font-family: "Open Sans Condensed";
   font-weight: bolder;
+  box-sizing: border-box;
   border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-transition:
+    background-color 0.218s,
+    border-color 0.218s,
+    box-shadow 0.218s;
+  transition:
+    background-color 0.218s,
+    border-color 0.218s,
+    box-shadow 0.218s;
 
   &:hover {
     background-color: white;
@@ -27,12 +38,7 @@ export const BaseButton = styled.button`
 `;
 
 export const GoogleSignInButton = styled(BaseButton)`
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -webkit-appearance: none;
   background-color: WHITE;
-  background-image: none;
   border: 1px solid #747775;
   -webkit-border-radius: 20px;
   border-radius: 20px;
@@ -82,5 +88,30 @@ export const InvertedButton = styled(BaseButton)`
     background-color: black;
     color: white;
     border: none;
+  }
+`;
+
+export const BurgerMenuButton = styled(BaseButton)`
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 30px;
+  background: transparent;
+  border: none;
+  z-index: 20;
+
+  div {
+    width: 30px;
+    height: 3px;
+    background: black;
+    border-radius: 10px;
+    border:none
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+    padding-left: 0px;
+    margin-left: 10px;
   }
 `;

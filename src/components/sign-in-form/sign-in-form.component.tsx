@@ -65,9 +65,14 @@ const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
           onSubmit(data);
         })}
       >
-        <FormInput {...register("email")} label="Email" type="email" required />
         <FormInput
-          {...register("password")}
+          {...(register("email"), { maxLength: 20 })}
+          label="Email"
+          type="email"
+          required
+        />
+        <FormInput
+          {...register("password", { maxLength: 20 })}
           label="Password"
           type="password"
           required
@@ -80,6 +85,7 @@ const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
         >
           Sign In with Google
         </Button>
+        <Button type="submit">Sign In with Email</Button>
       </form>
       <SingupLinker onClick={toggleForm}>
         <h3>Don&apos;t have an account?</h3>

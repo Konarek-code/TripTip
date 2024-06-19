@@ -12,6 +12,18 @@ const Home: React.FC = () => {
           <img src={Suitcase} alt="suitcase" />
           <h3>Start your journey</h3>
         </ImageContainer>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+        <h3> lorme ipsum </h3>
+
         <Outlet />
       </HomeContainer>
       <Footer />
