@@ -1,14 +1,20 @@
-import { countriesData } from "../countriesItems/countries.Data";
-import CountriesItems from "../countriesItems/countriesItems.component";
+import React from "react";
 import { CountriesContainer } from "./countries.style";
+import CountriesItems from "../countriesItems/countriesItems.component";
+import { CountriesData } from "../countriesItems/countries.Data";
 
-const Countries: React.FC = () => {
+interface CountriesProps {
+  countries: CountriesData[]; // Przekazujemy listę krajów przez propsy
+}
+
+const Countries: React.FC<CountriesProps> = ({ countries }) => {
   return (
     <CountriesContainer>
-      {countriesData.map((land) => {
-        return <CountriesItems key={land.id} land={land} />;
-      })}
+      {countries.map((land) => (
+        <CountriesItems key={land.id} land={land} />
+      ))}
     </CountriesContainer>
   );
 };
+
 export default Countries;

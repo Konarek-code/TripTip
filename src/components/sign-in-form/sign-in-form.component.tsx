@@ -22,6 +22,8 @@ import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 type SingInFormProps = {
   toggleForm: () => void;
@@ -39,6 +41,7 @@ const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
 
   const signInWithGoogle = async (): Promise<void> => {
     await signInWithGooglePopup();
+    console.log(currentUser);
   };
 
   const onSubmit: SubmitHandler<Formfields> = async (data: Formfields) => {
@@ -50,9 +53,10 @@ const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
       console.log("user sign in failed", error);
     }
   };
-
+  const currentUser = useSelector(selectCurrentUser);
   const handleGoogleSignIn = async () => {
     await signInWithGoogle().catch((error) => console.log(error));
+    console.log(currentUser);
   };
 
   return (
@@ -60,13 +64,9 @@ const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
       <LabelTitle>Welcome traveler</LabelTitle>
       <LettersImage src={Letters} />
       <StampImage src={stamp} alt="airplane icon" />
-      <form
-        onSubmit={handleSubmit((data) => {
-          onSubmit(data);
-        })}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
-          {...(register("email"), { maxLength: 20 })}
+          {...register("email", { maxLength: 20 })}
           label="Email"
           type="email"
           required

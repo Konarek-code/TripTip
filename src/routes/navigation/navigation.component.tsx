@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Fragment, useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +28,7 @@ const Navigation: React.FC = () => {
   const [scroll, setScroll] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+
   const currentBurgerState = useSelector((state: RootState) =>
     selectCurrentState(state),
   );
@@ -69,12 +72,12 @@ const Navigation: React.FC = () => {
           <img src={LogIcon} alt="Log Icon" />
         </Imagebutton>
         <NavLinks>
-          <NavLink to="trip">Your Trip</NavLink>
+          <NavLink to="Flags">Directions</NavLink>
           <NavLink to="func2">Func2</NavLink>
           <NavLink to="func1">Func3</NavLink>
           {currentUser ? (
             <SignNavLinks to="/" onClick={signOutUser}>
-              Sign Out
+              Sign Out{" "}
             </SignNavLinks>
           ) : (
             <SignNavLinks to="userForms">Sign In</SignNavLinks>

@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
 /* eslint-disable @typescript-eslint/return-await */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { initializeApp } from "firebase/app";
 
@@ -38,13 +39,8 @@ const firebaseConfig = {
   appId: "1:348914137960:web:9066afdb2123adb3a774dd",
 };
 
-initializeApp(firebaseConfig);
-
-export type AdditionalInformation = {
-  displayName?: string;
-};
-
-export const db = getFirestore();
+// Initialize Firebase
+const firebaseapp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -52,13 +48,16 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
+export type AdditionalInformation = {
+  displayName?: string;
+};
+
+export const db = getFirestore();
+
 export const auth = getAuth();
 
 export const signInWithGooglePopup = async (): Promise<UserCredential> =>
-  await signInWithPopup(auth, googleProvider);
-
-export const signInWithGoogleRedirect = async (): Promise<void> =>
-  await signInWithRedirect(auth, googleProvider);
+  signInWithPopup(auth, googleProvider);
 
 export type UserData = {
   createdAt: Date;

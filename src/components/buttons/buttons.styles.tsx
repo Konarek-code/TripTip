@@ -115,3 +115,18 @@ export const BurgerMenuButton = styled(BaseButton)`
     margin-left: 10px;
   }
 `;
+export const SearchButton = styled(BaseButton)`
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  border-radius: 30px;
+  background-color: #fec84b;
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.6s;
+  text-transform: none;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;

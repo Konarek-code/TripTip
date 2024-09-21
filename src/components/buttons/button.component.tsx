@@ -4,6 +4,7 @@ import {
   GoogleSignInButton,
   InvertedButton,
   BurgerMenuButton,
+  SearchButton,
 } from "./buttons.styles";
 
 export enum BUTTON_TYPE_CLASSES {
@@ -11,6 +12,7 @@ export enum BUTTON_TYPE_CLASSES {
   google = "google-sign-in",
   inverted = "inverted",
   burger = "burger-menu",
+  search = "search",
 }
 
 export type ButtonProps = {
@@ -25,12 +27,14 @@ const getButton = (
   | typeof BaseButton
   | typeof GoogleSignInButton
   | typeof InvertedButton
-  | typeof BurgerMenuButton => {
+  | typeof BurgerMenuButton
+  | typeof SearchButton => {
   return {
     [BUTTON_TYPE_CLASSES.base]: BaseButton,
     [BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
     [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
     [BUTTON_TYPE_CLASSES.burger]: BurgerMenuButton,
+    [BUTTON_TYPE_CLASSES.search]: SearchButton,
   }[buttonType];
 };
 
