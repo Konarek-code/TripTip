@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   padding: 5% 3%;
-  background: black;
+  background: #222831;
   width: 100%;
   position: aboslute;
-  bottom: -100px;
+  bottom: 0px;
   transition: bottom 0.3s ease;
   &.visible {
     bottom: 0;

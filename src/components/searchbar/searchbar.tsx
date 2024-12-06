@@ -5,8 +5,8 @@ interface SearchBarProps<T> {
   searchTerm: string;
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  data: T[]; // Generic data, e.g., list of countries
-  renderResults: (filteredData: T[]) => JSX.Element; // Function to render filtered results
+  data: T[];
+  renderResults: (filteredData: T[]) => JSX.Element;
 }
 
 const SearchBar = <T,>({
@@ -16,6 +16,17 @@ const SearchBar = <T,>({
   data,
   renderResults,
 }: SearchBarProps<T>): JSX.Element => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    const value = event.target.value;
+    const sanitizedValue = value.replace(/[^a-zA-Z\s]/g, "");
+    onSearchChange({
+      ...event,
+      target: { ...event.target, value: sanitizedValue },
+    });
+  };
+
   return (
     <Fragment>
       <SearchBarContainer>
@@ -23,7 +34,7 @@ const SearchBar = <T,>({
           type="text"
           placeholder={placeholder}
           value={searchTerm}
-          onChange={onSearchChange}
+          onChange={handleInputChange}
         />
       </SearchBarContainer>
       {renderResults(data)}

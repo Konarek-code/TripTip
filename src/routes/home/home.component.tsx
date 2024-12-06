@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import {
   HeadContainer,
   HomeContainer,
-  ImageContainer,
+  LastContainer,
   ImageHome,
   InformationContainer,
   SearchBarOverlay,
@@ -12,27 +12,51 @@ import BestCard from "../../components/best-choice-card/bestcard.component";
 import Suitcase from "../../assets/Suitcase.png";
 import Opinion from "../../assets/opinion.png";
 import Plane from "../../assets/plane.png";
+
 import * as React from "react";
 import Footer from "../../components/footer/footer.component";
 import SearchBlcokComp from "../../components/searchblock/search-block.component";
-import RecommendedCard from "../../components/Recommended-card/recommended-card.component";
+// import RecommendedCard from "../../components/Recommended-card/recommended-card.component";
+import ExploreComponent from "../../components/explore-Card/explore.component";
+
+import { useDispatch } from "react-redux";
+import { setShowSearchInNav } from "../../store/scroll/scroll.reducer";
+import { AppDispatch } from "../../store/store";
 
 const Home: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch(); // Use AppDispatch for type
+
+  const searchBlockRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const handleScroll = (): void => {
+      // Show search in navigation if user scrolls down more than 300px
+      dispatch(setShowSearchInNav(window.scrollY > 300));
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [dispatch]);
+
   return (
     <React.Fragment>
       <HomeContainer>
         <HeadContainer>
           <h3> Which continent should we go</h3>
           <ImageHome src={MapHome} alt="map" />
-          <SearchBarOverlay>
-            <SearchBlcokComp></SearchBlcokComp>
-          </SearchBarOverlay>
+          <div ref={searchBlockRef}>
+            <SearchBarOverlay>
+              <SearchBlcokComp></SearchBlcokComp>
+            </SearchBarOverlay>
+          </div>
         </HeadContainer>
-        <RecommendedCard />
+        {/* <RecommendedCard /> */}
+        <ExploreComponent />
         <InformationContainer>
           <h3> Trending Destinations - World</h3>
           <h2>
-            {" "}
             From lesser-known cities to new escapes, these places are on the up
             and up. You heard it here first. The Travelers’ Choice Awards Best
             of the Best title celebrates the highest level of excellence in
@@ -44,7 +68,7 @@ const Home: React.FC = () => {
         </InformationContainer>
         <hr />
         <BestCard />
-        <ImageContainer>
+        <LastContainer>
           <p>
             <h2> You dont have a clue where to go?</h2>
             <span>
@@ -62,7 +86,7 @@ const Home: React.FC = () => {
             <span>It’s good to know other people’s opinions </span>
             <img src={Opinion} alt="suitcase" />
           </p>
-        </ImageContainer>
+        </LastContainer>
         <Outlet />
       </HomeContainer>
       <Footer />

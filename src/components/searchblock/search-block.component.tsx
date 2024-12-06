@@ -13,13 +13,13 @@ const SearchBlcokComp: React.FC = () => {
     <Fragment>
       <SearchBlockContainer>
         <SearchBlock>
-          <h2> chose the continent</h2>
+          <h2> select continent </h2>
           <Button
             buttonType={BUTTON_TYPE_CLASSES.search}
             type="button"
             onClick={handleClick}
           >
-            {showContinentCard ? "Hide " : "Search"}
+            {showContinentCard ? "Hide " : "Show"}
           </Button>
         </SearchBlock>
       </SearchBlockContainer>

@@ -116,12 +116,10 @@ export const BurgerMenuButton = styled(BaseButton)`
   }
 `;
 export const SearchButton = styled(BaseButton)`
-  min-width: 165px;
-  width: auto;
-  height: 50px;
-  border-radius: 30px;
   background-color: #fec84b;
-  font-size: 1.5rem;
+  height: 40px;
+  font-size: 24px;
+  margin: 15px;
   font-family: "Roboto", sans-serif;
   transition: background-color 0.6s;
   text-transform: none;

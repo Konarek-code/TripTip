@@ -4,7 +4,7 @@ import CountriesItems from "../countriesItems/countriesItems.component";
 import { CountriesData } from "../countriesItems/countries.Data";
 
 interface CountriesProps {
-  countries: CountriesData[]; // Przekazujemy listę krajów przez propsy
+  countries: CountriesData[];
 }
 
 const Countries: React.FC<CountriesProps> = ({ countries }) => {

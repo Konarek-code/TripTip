@@ -10,7 +10,12 @@
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "overrides": [],
+  "overrides": [   {
+    "files": ["src/components/mapApi/mapApi.component.jsx"],
+    "rules": {
+      "@typescript-eslint/*": "off"
+    }
+  }],
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module",

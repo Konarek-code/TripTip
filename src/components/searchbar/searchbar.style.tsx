@@ -5,6 +5,7 @@ export const SearchBarContainer = styled.div`
   display: flex;
   height: 70px;
   width: 600px;
+  margin: 20px auto;
 `;
 export const SearchBarInput = styled.input`
   width: 100%;
@@ -15,18 +16,15 @@ export const SearchBarInput = styled.input`
 `;
 export const CountriesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(150px, 1fr)
-  ); /* Automatyczne dopasowanie do szerokości */
-  gap: 15px; /* Odstępy między flagami */
-  width: 100%; /* Zapewnia, że siatka wypełnia całą szerokość rodzica */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
 `;
 
 export const CountryContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 150px; /* Ustawia wysokość kontenera flagi */
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,9 +38,9 @@ export const CountryContainer = styled.div`
 `;
 
 export const Flag = styled.img`
-  width: auto; /* Zachowuje proporcje */
-  height: 100%; /* Flaga wypełnia wysokość kontenera */
-  object-fit: contain; /* Zapewnia zachowanie proporcji bez przycinania */
+  width: auto;
+  height: 100%;
+  object-fit: contain;
 `;
 
 export const CountryName = styled.h2`
@@ -53,7 +51,7 @@ export const CountryName = styled.h2`
   margin: 0;
   padding: 10px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.5); /* Półprzezroczyste tło pod tekstem */
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 1.2rem;
   font-weight: bold;

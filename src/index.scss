@@ -24,4 +24,24 @@ body {
   }
   .bg-yes {
     box-shadow: 0 0 20px dark;
-  }
+  } 
+
+.map-selected {
+  fill: #ff5722;
+}
+
+.map-unselected {
+  fill: #222831;
+}
+
+.map-selected:hover,
+.map-unselected:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin: 8px 0;
+}

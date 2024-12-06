@@ -5,21 +5,22 @@ export const SearchBlockContainer = styled.div`
   flex-direction: column;
   align-items: center;
   display: flex;
+  padding: 10px;
   height: auto;
-  width: 40%;
+  width: 100%;
   position: relative;
   z-index: 1;
 `;
 
 export const SearchBlock = styled.div`
   width: 100%;
+  max-width: 700px;
+  border: 1px solid #bababa;
+  border-radius: 30px;
   height: auto;
   display: flex;
-  padding: 10px;
   background: white;
   font-size: 1.2rem;
-  margin-bottom: 20px;
-  border-radius: 40px;
   justify-content: space-between;
   text-align: left;
   align-items: center;

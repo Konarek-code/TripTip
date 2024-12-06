@@ -1,29 +1,27 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
+  position: relative;
   display: flex;
   width: 70%;
-  margin: 100px auto;
+  margin: 10px auto;
   padding: 20px;
-  position: relative;
   overflow: hidden;
 `;
 
-export const RecommendedCardsitem = styled.div`
-  flex: 0 0 23%
-  height: 300px;
-  width: auto;
+export const RecommendedCardsItem = styled.div`
+  flex: 0 0 23%;
+  height: auto;
   margin: 10px;
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 30px;
   overflow: hidden;
 
   img {
+    border-radius: 15px;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -32,7 +30,7 @@ export const RecommendedCardsitem = styled.div`
 
 export const ArrowButton = styled.button`
   position: absolute;
-  top: 50%;
+  top: 1160px;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.8);
   border: none;
@@ -46,18 +44,17 @@ export const ArrowButton = styled.button`
   }
 
   &.left {
-    left: 10px; 
+    left: 250px;
   }
 
   &.right {
-    right: 10px; 
+    right: 250px;
   }
 `;
+
 export const RecommendedCardLabel = styled.p`
   width: 70%;
   height: auto;
-  justify-content: start;
-  align-content: center;
 
   h3 {
     font-size: 20px;
@@ -66,6 +63,7 @@ export const RecommendedCardLabel = styled.p`
     padding: 0px 20px;
     font-family: "Arial", sans-serif;
   }
+
   h2 {
     font-size: 30px;
     color: dark;

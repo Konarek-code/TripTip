@@ -1,16 +1,22 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 
 interface NavigationContainerProps {
   scroll: boolean;
 }
+const breakpoints = {
+  mobile: "600px",
+  tablet: "800px",
+  desktop: "1000px",
+};
+
 export const NavigationContainer = styled.div<NavigationContainerProps>`
-  height: 70px;
+  height: 80px;
   width: 100%;
+  background: #eeeeee;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -18,11 +24,13 @@ export const NavigationContainer = styled.div<NavigationContainerProps>`
     props.scroll ? "0 4px 8px rgba(0, 0, 0, 0.3)" : " 0px 2px 0px white;"};
 `;
 
-export const LogoContainer = styled(Link)`
+export const LogoContainer = styled(Link)<
+  LinkProps & { showSearchInNav: boolean }
+>`
   display: flex;
   height: 100%;
-  margin-right: 90px;
-  margin-left: 60px;
+  margin-right: ${({ showSearchInNav }) =>
+    showSearchInNav ? "100px" : "50px"};
   img {
     height: 70px;
   }
@@ -37,22 +45,38 @@ export const LogoContainer = styled(Link)`
     }
   }
 `;
-
-export const NavLinks = styled.div`
-  width: 400px;
+export const NavLinks = styled.div<{ showSearchInNav: boolean }>`
+  width: ${({ showSearchInNav }) => (showSearchInNav ? "300px" : "350px")};
+  @media only screen and (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
   height: 100%;
+  justify-content: ${({ showSearchInNav }) =>
+    showSearchInNav ? "flex-end" : "center"};
   display: flex;
-  margin-left: 120px;
+  margin-left: ${({ showSearchInNav }) => (showSearchInNav ? "40px" : "0px")};
   align-items: center;
+`;
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  magrin-left: 20px;
   justify-content: center;
-  @media only screen and (max-width: 800px) {
-    margin-left: 0px;
+  width: 100%;
+  max-width: 600px;
+  height: 30px;
+  padding: 0px;
+  Button {
+    height: 30px;
+  }
+  @media only screen and (max-width: ${breakpoints.mobile}) {
     display: none;
   }
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(Link)<{ showSearchInNav: boolean }>`
   position: relative;
+  margin-left: ${({ showSearchInNav }) => (showSearchInNav ? "10px" : "10px")};
   padding: 10px 15px;
   cursor: pointer;
   text-decoration: none;
@@ -83,7 +107,7 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const SignNavLinks = styled(NavLink)`
+export const SignNavLinks = styled(NavLink)<{ showSearchInNav?: boolean }>`
   min-width: 100px;
   width: auto;
   letter-spacing: 0.5px;

@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const ContinentContainer = styled.div<{ isVisible: boolean }>`
   position: absolute;
-  width: 50%;
+  width: 100%;
   max-width: 850px;
   top: 100%;
+  left: 28%;
   overflow: hidden;
   height: ${({ isVisible }) => (isVisible ? "300px" : "0px")};
   transition: height 0.5s ease-in-out;

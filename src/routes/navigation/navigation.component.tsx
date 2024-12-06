@@ -14,6 +14,7 @@ import {
   SignNavLinks,
   Imagebutton,
   CardNavLink,
+  SearchContainer,
 } from "./navigation.style";
 import CarLogo from "../../assets/CarLogo.png";
 import LogIcon from "../../assets/Logicon.png";
@@ -23,11 +24,15 @@ import { RootState } from "../../store/store";
 import Card from "../../components/card/card.component";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { selectShowSearchInNav } from "../../store/scroll/scroll.selector";
+
+import SearchBlockComp from "../../components/searchblock/search-block.component";
 
 const Navigation: React.FC = () => {
   const [scroll, setScroll] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const showSearchInNav = useSelector(selectShowSearchInNav);
 
   const currentBurgerState = useSelector((state: RootState) =>
     selectCurrentState(state),
@@ -64,25 +69,43 @@ const Navigation: React.FC = () => {
           <div />
           <div />
         </Button>
-        <LogoContainer to="/">
+        <LogoContainer to="/" showSearchInNav={showSearchInNav}>
           <img src={CarLogo} alt="Car Logo" />
           <h2>Trip Tip</h2>
         </LogoContainer>
         <Imagebutton to="userForms">
           <img src={LogIcon} alt="Log Icon" />
         </Imagebutton>
-        <NavLinks>
-          <NavLink to="Flags">Directions</NavLink>
-          <NavLink to="func2">Func2</NavLink>
-          <NavLink to="func1">Func3</NavLink>
-          {currentUser ? (
-            <SignNavLinks to="/" onClick={signOutUser}>
-              Sign Out{" "}
-            </SignNavLinks>
-          ) : (
-            <SignNavLinks to="userForms">Sign In</SignNavLinks>
-          )}
+        {showSearchInNav && (
+          <SearchContainer>
+            <SearchBlockComp />
+          </SearchContainer>
+        )}
+
+        <NavLinks showSearchInNav={showSearchInNav}>
+          <NavLink to="FindBy" showSearchInNav={showSearchInNav}>
+            Find by
+          </NavLink>
+          <NavLink to="func2" showSearchInNav={showSearchInNav}>
+            Tips
+          </NavLink>
+          <NavLink to="func1" showSearchInNav={showSearchInNav}>
+            Been
+          </NavLink>
         </NavLinks>
+        {currentUser ? (
+          <SignNavLinks
+            to="/"
+            onClick={signOutUser}
+            showSearchInNav={showSearchInNav}
+          >
+            Sign Out{" "}
+          </SignNavLinks>
+        ) : (
+          <SignNavLinks to="userForms" showSearchInNav={showSearchInNav}>
+            Sign In
+          </SignNavLinks>
+        )}
       </NavigationContainer>
       <Card open={currentBurgerState} onClose={handleCloseCard}>
         <CardNavLink to="trip">Your Trip </CardNavLink>

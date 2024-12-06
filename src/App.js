@@ -4,7 +4,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./routes/navigation/navigation.component";
 import Home from "./routes/home/home.component";
-import Map from "./routes/map/map.component";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -13,7 +12,7 @@ import {
 } from "./utils/firebase/firebase.utils";
 import { setCurrentUser } from "./store/user/user.reducer";
 import UserForms from "./routes/sign-In/userForms.component";
-import Flags from "./routes/Country--Flags/Flags.component";
+import Findby from "./routes/find-by/find_by.component";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,9 +36,8 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
-        <Route path="map" element={<Map />} />
         <Route path="userForms" element={<UserForms />} />
-        <Route path="Flags" element={<Flags />} />
+        <Route path="FindBy" element={<Findby />} />
       </Route>
     </Routes>
   );

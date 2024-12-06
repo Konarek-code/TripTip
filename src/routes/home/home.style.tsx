@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.div`
   position: relative;
+  background: #eeeeee;
   display: flex;
   margin: 0;
-  margin-bottom: 50px;
   height: 100%;
   align-items: center;
   justify-content: center;
-  padding-bottom: 200px;
   flex-direction: column;
 
   hr {
@@ -19,7 +18,7 @@ export const HomeContainer = styled.div`
     margin-bottom: 50px;
   }
 `;
-export const ImageContainer = styled.div`
+export const LastContainer = styled.div`
   position: relative;
   width: 100%;
   height: auto;
@@ -27,16 +26,16 @@ export const ImageContainer = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-evenly;
-  background-color: #fbf2d5;
-  padding: 15px;
+  background-color: #2d4059;
+  padding: 0px 100px;
   overflow: hidden;
   p {
     display: flex;
     text-align: center;
     justify-content: center;
     flex-direction: column;
-    margin: 0 10px;
-    padding: 5px;
+    margin: 0 0px;
+    padding: 0px;
   }
 
   img {
@@ -44,7 +43,7 @@ export const ImageContainer = styled.div`
     margin-top: 100px;
     margin-bottom: 20px;
     height: auto;
-    width: 100%;
+    width: 80%;
     max-width: 300px;
     transition: opacity 0.5s ease;
     backface-visibility: hidden;
@@ -57,7 +56,7 @@ export const ImageContainer = styled.div`
   h2 {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: white;
     margin-bottom: 10px;
     padding: 10px 0;
     text-align: start;
@@ -65,7 +64,7 @@ export const ImageContainer = styled.div`
 
   span {
     font-size: 16px;
-    color: #555;
+    color: #00bcd4;
     padding: 0 10px;
     margin-bottom: 10px;
   }
@@ -101,7 +100,7 @@ export const SearchBarOverlay = styled.div`
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
+  margin: auto;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -144,8 +143,4 @@ export const InformationContainer = styled.div`
     padding: 0px 25px;
     font-family: "Arial", sans-serif;
   }
-`;
-
-export const SuitcaseContainer = styled.div`
-  width:;
 `;
