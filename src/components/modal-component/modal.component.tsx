@@ -24,6 +24,7 @@ import { closeModal } from "../../store/modal/modal.reducer";
 import tripadvisor from "../../assets/tripadvisor.png";
 import booking from "../../assets/booking.png";
 import yelp from "../../assets/yelp.png";
+import { addFavouriteItem } from "../../store/favourite/favourite.reducer";
 
 const Modal: FC = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,16 @@ const Modal: FC = () => {
   if (!isOpen || selectedCountry == null) {
     return null;
   }
+  const handleAddToFavourite = (): void => {
+    if (selectedCountry != null) {
+      const newFavourite = {
+        id: selectedCountry.id,
+        country: selectedCountry.country,
+        flag: selectedCountry.flag,
+      };
+      dispatch(addFavouriteItem(newFavourite));
+    }
+  };
 
   return (
     <ModalOverlay isOpen={isOpen}>
@@ -86,7 +97,9 @@ const Modal: FC = () => {
           </InformationContent>
           <Divider />
           <ActionContainer>
-            <ActionButton>Add to Favorite</ActionButton>
+            <ActionButton onClick={handleAddToFavourite}>
+              Add to Favorite
+            </ActionButton>
             <strong> or check on </strong>
             <IconContainer>
               <Icon

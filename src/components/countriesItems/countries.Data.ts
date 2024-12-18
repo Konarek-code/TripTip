@@ -1241,7 +1241,7 @@ export const countriesData: CountriesData[] = [
     flag: "https://flagcdn.com/w320/ni.png",
     capital: "Managua",
     population: 6461000,
-    region: "Americas",
-    regionshortcut: "NA",
+    region: "Africa",
+    regionshortcut: "AF",
   },
 ];

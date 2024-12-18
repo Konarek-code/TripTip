@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export type ModalState = {
   readonly selectedCountry: {
+    [x: string]: any;
     cities: string[];
     capital: string;
     population: number;

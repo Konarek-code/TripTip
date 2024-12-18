@@ -13,6 +13,7 @@ import {
 import { setCurrentUser } from "./store/user/user.reducer";
 import UserForms from "./routes/sign-In/userForms.component";
 import Findby from "./routes/find-by/find_by.component";
+import Been from "./routes/been/been.component";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="userForms" element={<UserForms />} />
         <Route path="FindBy" element={<Findby />} />
+        <Route path="Been" element={<Been />} />
       </Route>
     </Routes>
   );

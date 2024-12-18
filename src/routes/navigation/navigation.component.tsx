@@ -27,6 +27,7 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { selectShowSearchInNav } from "../../store/scroll/scroll.selector";
 
 import SearchBlockComp from "../../components/searchblock/search-block.component";
+import FavouriteIcon from "../../components/favorite-icon/favorite-icon.component";
 
 const Navigation: React.FC = () => {
   const [scroll, setScroll] = useState(false);
@@ -89,7 +90,7 @@ const Navigation: React.FC = () => {
           <NavLink to="func2" showSearchInNav={showSearchInNav}>
             Tips
           </NavLink>
-          <NavLink to="func1" showSearchInNav={showSearchInNav}>
+          <NavLink to="Been" showSearchInNav={showSearchInNav}>
             Been
           </NavLink>
         </NavLinks>
@@ -106,6 +107,7 @@ const Navigation: React.FC = () => {
             Sign In
           </SignNavLinks>
         )}
+        <FavouriteIcon />
       </NavigationContainer>
       <Card open={currentBurgerState} onClose={handleCloseCard}>
         <CardNavLink to="trip">Your Trip </CardNavLink>

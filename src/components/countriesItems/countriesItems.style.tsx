@@ -1,14 +1,23 @@
 import styled from "styled-components";
 
-export const CountryItemContainer = styled.div`
-  flex: 1 1 25%;
-  height: 240px;
-  max-width: 400px;
+export const CountryItemContainer = styled.div<{ small?: boolean }>`
+  flex: 1 1 ${(props) => (props.small ?? false ? "100%" : "25%")}; // Default to false if small is null/undefined
+  height: ${(props) =>
+    props.small ?? false
+      ? "100px"
+      : "240px"}; // Default to false if small is null/undefined
+  max-width: ${(props) =>
+    props.small ?? false
+      ? "none"
+      : "400px"}; // Default to false if small is null/undefined
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #444;
-  margin: 50px 35px 40px;
+  margin: ${(props) =>
+    props.small ?? false
+      ? "10px"
+      : "50px 35px 40px"}; // Default to false if small is null/undefined
   overflow: hidden;
   position: relative;
   border-radius: 8px;
@@ -30,8 +39,14 @@ export const CountryItemContainer = styled.div`
   }
 
   img {
-    width: 100%;
-    height: 100%;
+    width: ${(props) =>
+      props.small ?? false
+        ? "50px"
+        : "100%"}; // Default to false if small is null/undefined
+    height: ${(props) =>
+      props.small ?? false
+        ? "50px"
+        : "100%"}; // Default to false if small is null/undefined
     object-fit: cover;
     z-index: 0;
     border-radius: 8px;
@@ -43,12 +58,18 @@ export const CountryItemContainer = styled.div`
     left: 0;
     right: 0;
     margin: 0;
-    padding: 10px;
+    padding: ${(props) =>
+      props.small ?? false
+        ? "5px"
+        : "10px"}; // Default to false if small is null/undefined
     z-index: 2;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    font-size: 1.2rem;
+    font-size: ${(props) =>
+      props.small ?? false
+        ? "0.8rem"
+        : "1.2rem"}; // Default to false if small is null/undefined
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -56,11 +77,17 @@ export const CountryItemContainer = styled.div`
 
   @media (max-width: 768px) {
     flex: 1 1 45%;
-    height: 200px;
+    height: ${(props) =>
+      props.small ?? false
+        ? "80px"
+        : "200px"}; // Default to false if small is null/undefined
   }
 
   @media (max-width: 480px) {
     flex: 1 1 100%;
-    height: 150px;
+    height: ${(props) =>
+      props.small ?? false
+        ? "60px"
+        : "150px"}; // Default to false if small is null/undefined
   }
 `;

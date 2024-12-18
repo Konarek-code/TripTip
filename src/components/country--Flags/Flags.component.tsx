@@ -17,13 +17,11 @@ const CountriesSearchPage: React.FC<{ selectedRegion: string | null }> = ({
   };
 
   const filteredCountries = countriesData.filter((country) => {
-    // Check explicitly if searchTerm is non-empty
     const matchesSearch =
       searchTerm !== ""
         ? country.country.toLowerCase().startsWith(searchTerm.toLowerCase())
         : true;
 
-    // Handle nullable selectedRegion explicitly
     const matchesRegion =
       selectedRegion !== null && selectedRegion !== undefined
         ? country.regionshortcut.toLocaleLowerCase() === selectedRegion

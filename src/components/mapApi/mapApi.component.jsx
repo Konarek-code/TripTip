@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import WorldMap from 'react-world-map';
 import { MapWrapper, RegionText } from './mapApi.component.style';
 

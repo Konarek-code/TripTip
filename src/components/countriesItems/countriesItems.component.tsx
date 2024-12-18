@@ -6,10 +6,12 @@ import { openModal } from "../../store/modal/modal.reducer";
 
 type CountriesItemsProps = {
   land: CountriesData;
+  small?: boolean;
 };
 
-const CountriesItems: FC<CountriesItemsProps> = ({ land }) => {
+const CountriesItems: FC<CountriesItemsProps> = ({ land, small }) => {
   const { country, flag } = land;
+
   const dispatch = useDispatch();
 
   const handleClick = (): void => {
@@ -17,7 +19,7 @@ const CountriesItems: FC<CountriesItemsProps> = ({ land }) => {
   };
 
   return (
-    <CountryItemContainer onClick={handleClick}>
+    <CountryItemContainer onClick={handleClick} small={small ?? false}>
       <img src={flag} alt={`Flag of ${country}`} />
       <h2>{country}</h2>
     </CountryItemContainer>
