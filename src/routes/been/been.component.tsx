@@ -1,16 +1,12 @@
-import { BeenMapContainer, Map } from "./been.component.style";
+import { BeenMapContainer } from "./been.component.style";
 import BeenList from "../../components/been-list/been-list.component";
-import MapApi from "../../components/mapApi/mapApi.component";
-import PercentPanels from "../../components/percent-panels/percent-panels.component";
+import ScorePanel from "../../components/ScorePanel/score-panel.component";
 
 const Been: React.FC = () => {
   return (
     <div>
       <BeenMapContainer>
-        <Map>
-          <MapApi onRegionSelect={undefined}></MapApi>
-          <PercentPanels></PercentPanels>
-        </Map>
+        <ScorePanel></ScorePanel>
         <BeenList></BeenList>
       </BeenMapContainer>
     </div>

@@ -7,9 +7,9 @@ import {
 } from "./region panels.style";
 
 interface RegionsPanelProps {
-  regions: Record<string, string>;
-  activeRegion: string | null;
-  onRegionClick: (region: string) => void;
+  regions: Record<string, string>; // Mapping of region names to background images
+  activeRegion: string | null; // Currently active region
+  onRegionClick: (region: string) => void; // Handler for region selection
 }
 
 const RegionsPanel: React.FC<RegionsPanelProps> = ({
@@ -36,7 +36,7 @@ const RegionsPanel: React.FC<RegionsPanelProps> = ({
           </RegionPanel>
         ))
       ) : (
-        <p>No regions available.</p> // Display a fallback message if regions is empty
+        <p>No regions available.</p>
       )}
     </RegionPanels>
   );

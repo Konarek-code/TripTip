@@ -1,15 +1,20 @@
 /*eslint-disable*/
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import WorldMap from 'react-world-map';
 import { MapWrapper, RegionText } from './mapApi.component.style';
 
-const MapApi = ({ onRegionSelect }) => {
-  const [selected, setSelected] = useState(null);
+const MapApi = ({ onRegionSelect,selectedRegion  }) => {
+  const [selected, setSelected] = useState(selectedRegion||null);
+
+  useEffect(() => {
+    setSelected(selectedRegion);
+  }, [selectedRegion]);
 
   const handleSelect = (region) => {
     setSelected(region);
     onRegionSelect(region);
+    
   };
 
   return (

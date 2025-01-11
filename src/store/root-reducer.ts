@@ -5,7 +5,8 @@ import burgerReducer from "./burger/burger.reducer";
 import scrollReducer from "./scroll/scroll.reducer";
 import modalReducer from "./modal/modal.reducer";
 import favouriteReducer from "./favourite/favourite.reducer";
-import countrieslistReducer from "./countrieslist/countrieslist.reducer";
+import { countriesReducer } from "./countrieslist/countries.reducer";
+import { cardReducer } from "./category-cards/category-cards.reducer";
 
 export const rootReducer = combineReducers({
   forms: formsReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
   scroll: scrollReducer,
   modal: modalReducer,
   favourite: favouriteReducer,
-  countrieslist: countrieslistReducer,
+  countries: countriesReducer,
+  card: cardReducer,
 });

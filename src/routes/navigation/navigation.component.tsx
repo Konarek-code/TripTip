@@ -87,7 +87,7 @@ const Navigation: React.FC = () => {
           <NavLink to="FindBy" showSearchInNav={showSearchInNav}>
             Find by
           </NavLink>
-          <NavLink to="func2" showSearchInNav={showSearchInNav}>
+          <NavLink to="TipsPage" showSearchInNav={showSearchInNav}>
             Tips
           </NavLink>
           <NavLink to="Been" showSearchInNav={showSearchInNav}>

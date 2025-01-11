@@ -1,6 +1,6 @@
 import { CountriesData } from "../countriesItems/countries.Data";
 
-const GroupCountriesByRegion = (
+export const GroupCountriesByRegion = (
   countries: CountriesData[],
 ): Record<string, CountriesData[]> => {
   const groupedCountries: Record<string, CountriesData[]> = {};
@@ -12,5 +12,3 @@ const GroupCountriesByRegion = (
   });
   return groupedCountries;
 };
-
-export default GroupCountriesByRegion;

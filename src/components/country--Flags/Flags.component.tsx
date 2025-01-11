@@ -26,7 +26,6 @@ const CountriesSearchPage: React.FC<{ selectedRegion: string | null }> = ({
       selectedRegion !== null && selectedRegion !== undefined
         ? country.regionshortcut.toLocaleLowerCase() === selectedRegion
         : true;
-    console.log("Selected Region:", selectedRegion);
 
     return matchesSearch && matchesRegion;
   });

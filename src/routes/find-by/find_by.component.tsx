@@ -7,14 +7,17 @@ const FindBy: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
   const handleRegionSelect = (region: string): void => {
-    setSelectedRegion(region); // Update the state with the selected region shortcut
+    setSelectedRegion(region);
   };
 
   return (
     <FindByContainer>
       <MapContainer>
         <Title>Find By Map</Title>
-        <MapApi onRegionSelect={handleRegionSelect} />
+        <MapApi
+          onRegionSelect={handleRegionSelect}
+          selectedRegion={undefined}
+        />
       </MapContainer>
       <CountriesSearchPage selectedRegion={selectedRegion} />
     </FindByContainer>
