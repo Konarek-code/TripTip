@@ -6,6 +6,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { initializeApp } from "firebase/app";
+import { getDatabase, onValue, ref } from "firebase/database";
 
 import {
   getAuth,
@@ -29,9 +30,10 @@ import {
   setDoc,
   QueryDocumentSnapshot,
 } from "firebase/firestore";
+import { Book } from "../../components/travel-books/travel-books.component";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDuqvBsQeZ6pPzoCcfeWbwUh4d9pRhOA9E",
+  apiKey: process.env.REACTAPP_API_KEY,
   authDomain: "triptip-276ab.firebaseapp.com",
   projectId: "triptip-276ab",
   storageBucket: "triptip-276ab.appspot.com",
@@ -53,6 +55,11 @@ export type AdditionalInformation = {
 };
 
 export const db = getFirestore();
+
+export const database = getDatabase(
+  firebaseapp,
+  "https://triptip-276ab-default-rtdb.europe-west1.firebasedatabase.app",
+);
 
 export const auth = getAuth();
 
@@ -129,4 +136,24 @@ export const getCurrentUser = async (): Promise<User | null> => {
       reject,
     );
   });
+};
+
+export const fetchBooks = (
+  setBooks: React.Dispatch<React.SetStateAction<Book[]>>,
+  setError: React.Dispatch<React.SetStateAction<string | null>>,
+): Unsubscribe => {
+  const booksRef = ref(database, "books");
+
+  const unsubscribe = onValue(
+    booksRef,
+    (snapshot) => {
+      const data: Book[] = snapshot.val() || [];
+      setBooks(data);
+    },
+    (error) => {
+      setError(error.message);
+    },
+  );
+
+  return unsubscribe;
 };

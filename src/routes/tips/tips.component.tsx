@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectActiveCard } from "../../store/category-cards/category-cards.selector";
 import { setActiveCard } from "../../store/category-cards/category-cards.reducer";
 import {
+  CancelButton,
   CategoriesWrapper,
   CategoryCard,
   FullScreenCard,
@@ -17,26 +18,31 @@ import SafetyTips from "../../components/safety-tips/safety-tips.component";
 import Insurance from "../../components/insurance/insurance.component";
 import BestTravelBlogs from "../../components/best-blogs/best-blogs.component";
 import TipsSticer from "../../assets/Tips_2.png";
+import Blog from "../../assets/Blogs.jpg";
+import Books from "../../assets/books.jpg";
+import Yt from "../../assets/yt.jpg";
+import Insuranceimg from "../../assets/Insurance.jpg";
+import Checklistimg from "../../assets/checklist.jpg";
+import Safety from "../../assets/Safety.jpg";
 import { AppDispatch } from "../../store/store";
 
 const TipsPage: React.FC = () => {
   const dispatch = useDispatch();
   const activeCard = useSelector(selectActiveCard);
-  const [isAnimating, setIsAnimating] = useState(false); // Nowy stan do kontrolowania animacji
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleCardClick = (cardName: string): void => {
     if (activeCard === cardName) {
-      // Jeśli kliknięto już aktywną kartę, zresetuj stan
       dispatch(setActiveCard(null));
     } else {
-      // Ustawiamy aktywną kartę i uruchamiamy animację
       dispatch(setActiveCard(cardName));
-      setIsAnimating(true); // Rozpoczynamy animację
+      setIsAnimating(true);
     }
   };
 
   const handleBack = (): ReturnType<AppDispatch> => {
-    return dispatch(setActiveCard(null));
+    const result = dispatch(setActiveCard(null));
+    return result;
   };
 
   useEffect(() => {
@@ -58,35 +64,56 @@ const TipsPage: React.FC = () => {
       <section>
         <h2>Sprawdź nasze kategorie</h2>
         <CategoriesWrapper>
+          <CategoryCard
+            imageUrl={Blog}
+            className={activeCard === "BestTravelBlogs" ? "active" : ""}
+            isLarge
+            onClick={() => {
+              handleCardClick("BestTravelBlogs");
+            }}
+            style={{ gridArea: "large-card-1" }}
+          >
+            <h3> Travel Blogs</h3>
+          </CategoryCard>
+          <CategoryCard
+            imageUrl={Books}
+            className={activeCard === "TravelBooks" ? "active" : ""}
+            isLarge
+            onClick={() => {
+              handleCardClick("TravelBooks");
+            }}
+            style={{ gridArea: "large-card-2" }}
+          >
+            <h3>Books before trips</h3>
+          </CategoryCard>
           {[
-            "Checklist",
-            "YouTubeGuides",
-            "TravelBooks",
-            "SafetyTips",
-            "BestTravelBlogs",
-            "Insurance",
-          ].map((cardName) => (
+            { cardName: "Safety", imageUrl: Safety },
+            { cardName: "Checklist", imageUrl: Checklistimg },
+            { cardName: "Insurance", imageUrl: Insuranceimg },
+            { cardName: "YouTubeGuides", imageUrl: Yt },
+          ].map((item, index) => (
             <CategoryCard
-              key={cardName}
-              className={activeCard === cardName ? "active" : ""}
+              key={item.cardName}
+              imageUrl={item.imageUrl}
+              className={`small-card-${index + 1} ${activeCard === item.cardName ? "active" : ""}`}
               onClick={() => {
-                handleCardClick(cardName);
+                handleCardClick(item.cardName);
               }}
             >
-              {cardName === "Checklist" && <Checklist />}
-              {cardName === "YouTubeGuides" && <YouTubeGuides />}
-              {cardName === "TravelBooks" && <TravelBooks />}
-              {cardName === "SafetyTips" && <SafetyTips />}
-              {cardName === "BestTravelBlogs" && <BestTravelBlogs />}
-              {cardName === "Insurance" && <Insurance />}
+              <h3>{item.cardName}</h3>
             </CategoryCard>
           ))}
         </CategoriesWrapper>
       </section>
       {activeCard !== null && !isAnimating && (
         <FullScreenCard>
-          <h2>Pełny ekran: {activeCard}</h2>
-          <button onClick={handleBack}>Wróć</button>
+          <CancelButton onClick={handleBack}>&times;</CancelButton>
+          {activeCard === "Checklist" && <Checklist />}
+          {activeCard === "YouTubeGuides" && <YouTubeGuides />}
+          {activeCard === "TravelBooks" && <TravelBooks />}
+          {activeCard === "Safety" && <SafetyTips />}
+          {activeCard === "BestTravelBlogs" && <BestTravelBlogs />}
+          {activeCard === "Insurance" && <Insurance />}
         </FullScreenCard>
       )}
     </PageWrapper>

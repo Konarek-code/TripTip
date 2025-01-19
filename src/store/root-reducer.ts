@@ -7,6 +7,7 @@ import modalReducer from "./modal/modal.reducer";
 import favouriteReducer from "./favourite/favourite.reducer";
 import { countriesReducer } from "./countrieslist/countries.reducer";
 import { cardReducer } from "./category-cards/category-cards.reducer";
+import blogReducer from "./blogs/blogs.reducer";
 
 export const rootReducer = combineReducers({
   forms: formsReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   favourite: favouriteReducer,
   countries: countriesReducer,
   card: cardReducer,
+  blog: blogReducer,
 });

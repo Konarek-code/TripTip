@@ -1,40 +1,70 @@
-import { BooksWrapper, Title, BooksList, BookItem } from "./travel-books.style";
+import React, { useEffect, useState } from "react";
+import { fetchBooks } from "../../utils/firebase/firebase.utils";
+import {
+  BookItem,
+  BooksList,
+  BooksWrapper,
+  Category,
+  Title,
+} from "./travel-books.style";
 
-// Dane książek (możesz zmienić na dynamiczne API, jeśli chcesz)
-const books = [
-  {
-    title: "Wielka Włóczęga",
-    author: "John Doe",
-    link: "https://example.com/book1",
-  },
-  {
-    title: "Przygoda na końcu świata",
-    author: "Jane Doe",
-    link: "https://example.com/book2",
-  },
-  {
-    title: "Podróże marzeń",
-    author: "Emily Smith",
-    link: "https://example.com/book3",
-  },
-];
+export interface Book {
+  category: any;
+  id: number;
+  title: string;
+  author: string;
+  img: string;
+  link: string;
+}
 
-// Komponent TravelBooks
 const TravelBooks: React.FC = () => {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = fetchBooks(setBooks, setError);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  if (error !== null) {
+    return (
+      <BooksWrapper>
+        <Title>Recommended Travel Books</Title>
+        <div>Error: {error}</div>
+      </BooksWrapper>
+    );
+  }
+
+  const groupedBooks = books.reduce<Record<string, Book[]>>((groups, book) => {
+    if (groups[book.category] === undefined) {
+      groups[book.category] = [];
+    }
+    groups[book.category].push(book);
+    return groups;
+  }, {});
+
   return (
     <BooksWrapper>
-      <Title>Polecane książki o podróżach</Title>
-      <BooksList>
-        {books.map((book, index) => (
-          <BookItem key={index}>
-            <h4>{book.title}</h4>
-            <p>{book.author}</p>
-            <a href={book.link} target="_blank" rel="noopener noreferrer">
-              Zobacz więcej
-            </a>
-          </BookItem>
-        ))}
-      </BooksList>
+      <Title>Recommended Travel Books</Title>
+      {Object.keys(groupedBooks).map((category) => (
+        <Category key={category}>
+          <h3 style={{ textAlign: "left", color: "#444" }}>{category}</h3>
+          <BooksList>
+            {groupedBooks[category].map((book) => (
+              <BookItem key={book.id}>
+                <img src={book.img} alt={book.title} />
+                <h4>{book.title}</h4>
+                <p>{book.author}</p>
+                <a href={book.link} target="_blank" rel="noopener noreferrer">
+                  Zobacz więcej
+                </a>
+              </BookItem>
+            ))}
+          </BooksList>
+        </Category>
+      ))}
     </BooksWrapper>
   );
 };
