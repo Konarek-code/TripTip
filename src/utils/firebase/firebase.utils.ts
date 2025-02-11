@@ -33,7 +33,7 @@ import {
 import { Book } from "../../components/travel-books/travel-books.component";
 
 const firebaseConfig = {
-  apiKey: process.env.REACTAPP_API_KEY,
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "triptip-276ab.firebaseapp.com",
   projectId: "triptip-276ab",
   storageBucket: "triptip-276ab.appspot.com",

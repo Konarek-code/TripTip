@@ -1,5 +1,4 @@
-import { Wrapper, List } from "../checklist/checklist.style";
-import { Title } from "../percent-panels/percent-panels.style";
+import { Wrapper, List, Title } from "./safety-tips.style";
 
 const SafetyTips: React.FC = () => {
   return (

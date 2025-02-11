@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   background: #fff;
   border-radius: 8px;
   padding: 20px;
@@ -8,12 +8,12 @@ const Wrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const Title = styled.h3`
+export const Title = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 15px;
 `;
 
-const List = styled.ul`
+export const List = styled.ul`
   list-style: none;
   padding: 0;
 

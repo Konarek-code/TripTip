@@ -11,7 +11,6 @@ import {
   StyledImage,
 } from "./tips.styles";
 import { useState, useEffect } from "react";
-import Checklist from "../../components/checklist/checklist.component";
 import YouTubeGuides from "../../components/ytGuides/ytGuides.component";
 import TravelBooks from "../../components/travel-books/travel-books.component";
 import SafetyTips from "../../components/safety-tips/safety-tips.component";
@@ -25,6 +24,7 @@ import Insuranceimg from "../../assets/Insurance.jpg";
 import Checklistimg from "../../assets/checklist.jpg";
 import Safety from "../../assets/Safety.jpg";
 import { AppDispatch } from "../../store/store";
+import ChecklistTable from "../../components/checklist-table/ckecklist-table.component";
 
 const TipsPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -88,7 +88,7 @@ const TipsPage: React.FC = () => {
           </CategoryCard>
           {[
             { cardName: "Safety", imageUrl: Safety },
-            { cardName: "Checklist", imageUrl: Checklistimg },
+            { cardName: "ChecklistTable", imageUrl: Checklistimg },
             { cardName: "Insurance", imageUrl: Insuranceimg },
             { cardName: "YouTubeGuides", imageUrl: Yt },
           ].map((item, index) => (
@@ -108,7 +108,7 @@ const TipsPage: React.FC = () => {
       {activeCard !== null && !isAnimating && (
         <FullScreenCard>
           <CancelButton onClick={handleBack}>&times;</CancelButton>
-          {activeCard === "Checklist" && <Checklist />}
+          {activeCard === "ChecklistTable" && <ChecklistTable />}
           {activeCard === "YouTubeGuides" && <YouTubeGuides />}
           {activeCard === "TravelBooks" && <TravelBooks />}
           {activeCard === "Safety" && <SafetyTips />}
