@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
-  position: relative;
-  background: #eeeeee;
+  background: #ffffff;
   display: flex;
-  margin: 0;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-
+  align-items: center;
+  justify-content: flex-start;
+  scroll-behavior: auto;
   hr {
     border: none;
     height: 2px;
@@ -18,129 +15,74 @@ export const HomeContainer = styled.div`
     margin-bottom: 50px;
   }
 `;
-export const LastContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  background-color: #2d4059;
-  padding: 0px 100px;
-  overflow: hidden;
-  p {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0 0px;
-    padding: 0px;
-  }
-
-  img {
-    opacity: 1;
-    margin-top: 100px;
-    margin-bottom: 20px;
-    height: auto;
-    width: 80%;
-    max-width: 300px;
-    transition: opacity 0.5s ease;
-    backface-visibility: hidden;
-
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    text-align: start;
-  }
-
-  span {
-    font-size: 16px;
-    color: #00bcd4;
-    padding: 0 10px;
-    margin-bottom: 10px;
-  }
-  p:nth-of-type(1) {
-    img {
-      margin-left: 35px;
-    }
-  }
-  p:nth-of-type(3) {
-    h2 {
-      margin-left: 15px;
-    }
-  }
-`;
 
 export const ImageHome = styled.img`
-  width: 100%;
-  height: 700px;
-  margin-bottom: 100px;
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  display: flex;
+  margin: 200px 0 0px 800px;
+  width: 800px;
+  height: 800px;
+  object-fit: cover;
 `;
+
 export const SearchBarOverlay = styled.div`
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto;
-  justify-content: center;
+  height: auto;
+  background: white;
+  display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 20%;
+`;
+export const CenterSideHeader = styled.div`
+  top: 10%;
+  left: 30%;
+  width: 750px;
+  display: flex;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px; // Zaokrąglone rogi
+  padding: 20px;
 `;
 
 export const HeadContainer = styled.div`
   width: 100%;
-  position: relative;
-  margin-bottom: 50px;
-  h3 {
-    top: 5%;
-    left: 30%;
-    position: absolute;
-    z-index: 1;
-    font-size: 50px;
-    font-weight: bold;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    font-family: "Arial", sans-serif;
-  }
+  height: 450px;
+  display: flex;
+  flex-direction: row
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 350px;
 `;
-export const InformationContainer = styled.div`
-  width: 70%;
-  height: auto;
-  justify-content: start;
-  align-content: center;
-  h3 {
-    font-size: 30px;
-    font-weight: bold;
-    color: dark;
-    padding: 0px 20px;
-    font-family: "Arial", sans-serif;
-  }
-  h2 {
+export const Title = styled.h3`
+  margin-top: 350px;
+  font-size: 48px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: "Inter", sans-serif;
+`;
+export const SubTitle = styled.h4`
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 800px;
+  padding: 0 20px;
+  @media (max-width: 768px) {
     font-size: 20px;
-    color: dark;
-    font-weight: normal;
-    padding: 0px 25px;
-    font-family: "Arial", sans-serif;
+    padding: 0 10px;
   }
 `;

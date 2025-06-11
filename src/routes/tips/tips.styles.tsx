@@ -1,25 +1,41 @@
 import styled from "styled-components";
 
 const COLORS = {
-  primary: "#FF6F00", // Pomarańczowy
-  secondary: "#FFA726", // Łagodniejszy pomarańczowy
-  textDark: "#333333", // Ciemny tekst
-  textLight: "#FFFFFF", // Jasny tekst
-  backgroundLight: "#FFFFFF", // Białe tło
-  backgroundDark: "#f4f4f4", // Jasnoszare tło
-  gradient: "linear-gradient(135deg, #FF9100, #FF6F00)", // Gradient pomarańczowy
+  primary: "#FF6F00",
+  secondary: "#FFA726",
+  textDark: "#333333",
+  textLight: "#FFFFFF",
+  backgroundLight: "#FFFFFF",
+  backgroundDark: "#f4f4f4",
+  gradient: "linear-gradient(135deg, #FF9100, #FF6F00)",
 };
-
-export const PageWrapper = styled.div`
+interface Props {
+  isOnCategoryPage?: boolean;
+}
+export const PageWrapper = styled.div<Props>`
   font-family: Arial, sans-serif;
   color: ${COLORS.textDark};
   padding: 20px;
   background-color: ${COLORS.backgroundDark};
-  min-height: 100vh;
+  min-height: 30vh;
   h2 {
     font-size: 1.75rem;
     color: ${COLORS.primary};
     margin-bottom: 20px;
+  }
+  overflow: ${(props) => (props.isOnCategoryPage === true ? "hidden" : "auto")};
+  height: ${(props) => (props.isOnCategoryPage === true ? "90vh" : "auto")};
+  @media (max-width: 768px) {
+    padding: 10px;
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width: 480px) {
+    padding: 5px;
+    h2 {
+      font-size: 1.25rem;
+    }
   }
 `;
 
@@ -145,9 +161,10 @@ export const CategoryCard = styled.div<CategoryCardProps>`
 
 export const FullScreenCard = styled.div`
   position: absolute;
-  top: 40vh;
+  top: 7vh;
   left: 15vh;
   border-radius: 16px;
+
   width: 85vw;
   height: 85vh;
   background: ${COLORS.gradient};

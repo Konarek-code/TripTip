@@ -20,9 +20,9 @@ const ChecklistItems: FC = () => {
       handleAddItem(inputValue);
     }
   };
-  const handleback = ( ):void =>{
-    dispatch()
-  }
+  // const handleback = ( ):void =>{
+  //   dispatch()
+  // }
   return (
     <>
       <input

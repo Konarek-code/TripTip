@@ -54,7 +54,7 @@ const TipsPage: React.FC = () => {
   }, [activeCard, isAnimating]);
 
   return (
-    <PageWrapper>
+    <PageWrapper isOnCategoryPage={activeCard !== null}>
       <Header>
         <StyledImage src={TipsSticer} alt="boy" />
         <h1>Podróżnicze Porady i Narzędzia</h1>

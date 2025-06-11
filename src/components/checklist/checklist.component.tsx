@@ -25,10 +25,11 @@ const Checklist: React.FC<{ id: string }> = ({ id }) => {
     dispatch(
       chooseChecklist({
         id,
-        activeChecklist : [],
+        items: [],
       }),
     );
     setIsOpen((prev) => !prev);
+    console.log("isOpen", isOpen);
   };
 
   const handleSaveTitle = (): void => {
@@ -80,7 +81,7 @@ const Checklist: React.FC<{ id: string }> = ({ id }) => {
           ></Button>
         </ButtonContainer>
       )}
-      {activeChecklist && (
+      {activeChecklist !== null && activeChecklist !== undefined && (
         <FullScreenCard>
           <Title>{title}</Title>
           <ChecklistItems />

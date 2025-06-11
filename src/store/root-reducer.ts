@@ -9,6 +9,7 @@ import { countriesReducer } from "./countrieslist/countries.reducer";
 import { cardReducer } from "./category-cards/category-cards.reducer";
 import blogReducer from "./blogs/blogs.reducer";
 import checklistReducer from "./checklist/checklist.reducer";
+import continentReducer from "./homeContinent/homeContinentSlice";
 
 export const rootReducer = combineReducers({
   forms: formsReducer,
@@ -21,4 +22,5 @@ export const rootReducer = combineReducers({
   card: cardReducer,
   blog: blogReducer,
   checklist: checklistReducer,
+  continent: continentReducer,
 });

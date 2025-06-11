@@ -13,7 +13,7 @@ const breakpoints = {
 export const NavigationContainer = styled.div<NavigationContainerProps>`
   height: 80px;
   width: 100%;
-  background: #eeeeee;
+  background: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
