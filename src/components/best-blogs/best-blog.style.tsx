@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const COLORS = {
-  primary: "#1E90FF", // Niebieski (kojarzący się z niebem)
-  secondary: "#FFD700", // Złoty (słońce)
+  primary: "#1E90FF",
+  secondary: "#FFD700",
   textDark: "#333333",
   textLight: "#FFFFFF",
   backgroundLight: "#FAFAFA",

@@ -5,9 +5,8 @@ export const ContinentContainer = styled.div<{ isVisible: boolean }>`
   width: 100%;
   max-width: 850px;
   top: 100%;
-  left: 28%;
   overflow: hidden;
-  height: ${({ isVisible }) => (isVisible ? "300px" : "0px")};
+  height: ${({ isVisible }) => (isVisible ? "400px" : "0px")};
   transition: height 0.5s ease-in-out;
   background-color: white;
   border-radius: 30px;
@@ -30,6 +29,7 @@ export const ContinentItem = styled.div`
   align-items: center;
   text-align: center;
   border-radius: 30px;
+  border: 1px solid orange;
   &:hover {
     background-color: orange;
   }

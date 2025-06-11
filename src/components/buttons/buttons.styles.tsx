@@ -116,7 +116,7 @@ export const BurgerMenuButton = styled(BaseButton)`
   }
 `;
 export const SearchButton = styled(BaseButton)`
-  background-color: #fec84b;
+  background-color: rgb(3, 3, 3);
   height: 40px;
   font-size: 24px;
   margin: 15px;
@@ -124,7 +124,7 @@ export const SearchButton = styled(BaseButton)`
   transition: background-color 0.6s;
   text-transform: none;
   &:hover {
-    background-color: black;
+    background-color: orange;
     color: white;
   }
 `;
