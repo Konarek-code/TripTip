@@ -5,37 +5,51 @@ import {
   ChecklistInput,
   ButtonContainer,
   FullScreenCard,
+  Overlay,
 } from "./checklist.style";
 import Button, { BUTTON_TYPE_CLASSES } from "../buttons/button.component";
 import { useDispatch, useSelector } from "react-redux";
-import { selectActiveChecklist } from "../../store/checklist/checklist.selector";
-import { chooseChecklist } from "../../store/checklist/checklist.reducer";
+import {
+  chooseChecklist,
+  renameChecklist,
+} from "../../store/checklist/checklist.reducer";
+import {
+  selectActiveChecklistId,
+  selectAllChecklists,
+} from "../../store/checklist/checklist.selector";
 import editicon from "../../assets/edit.png";
 import ChecklistItems from "../checklist-items/checklist-items.component";
 
-const Checklist: React.FC<{ id: string }> = ({ id }) => {
+import { updateChecklistInFirestore } from "../../utils/checklist/updateChecklistInFirestore";
+
+interface Props {
+  id: string;
+}
+
+const Checklist: React.FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
-  const activeChecklist = useSelector(selectActiveChecklist);
-  const [isEditing, setIsEditing] = useState<boolean>(true);
-  const [title, setTitle] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const activeChecklistId = useSelector(selectActiveChecklistId);
+  const allChecklists = useSelector(selectAllChecklists);
+  const checklist = allChecklists.find((c) => c.id === id);
+
+  const [isEditing, setIsEditing] = useState<boolean>(
+    checklist?.title == null || checklist.title.trim() === "",
+  );
+
+  const [title, setTitle] = useState<string>(checklist?.title ?? "");
+  const isOpen = activeChecklistId === id;
 
   const handleOpenChecklist = (): void => {
-    console.log("clicked");
-    dispatch(
-      chooseChecklist({
-        id,
-        items: [],
-      }),
-    );
-    setIsOpen((prev) => !prev);
-    console.log("isOpen", isOpen);
+    dispatch(chooseChecklist(id));
   };
 
-  const handleSaveTitle = (): void => {
+  const handleSaveTitle = async (): Promise<void> => {
+    dispatch(renameChecklist({ id, newTitle: title }));
+    await updateChecklistInFirestore(id, { title });
     setIsEditing(false);
-    console.log("title saved:", title);
   };
+
+  if (checklist === null || checklist === undefined) return null;
 
   return (
     <Wrapper>
@@ -50,17 +64,18 @@ const Checklist: React.FC<{ id: string }> = ({ id }) => {
             placeholder="Add a title"
           />
         ) : (
-          <span>{title}</span>
+          <span>{checklist.title}</span>
         )}
       </Title>
+
       {isEditing ? (
         <Button
           buttonType={BUTTON_TYPE_CLASSES.akcept}
           onClick={(e) => {
             e.stopPropagation();
-            handleSaveTitle();
+            void handleSaveTitle();
           }}
-        ></Button>
+        />
       ) : (
         <ButtonContainer>
           <Button
@@ -70,7 +85,7 @@ const Checklist: React.FC<{ id: string }> = ({ id }) => {
               e.stopPropagation();
               setIsEditing(true);
             }}
-          ></Button>
+          />
           <Button
             icon={editicon}
             buttonType={BUTTON_TYPE_CLASSES.arrow}
@@ -78,16 +93,21 @@ const Checklist: React.FC<{ id: string }> = ({ id }) => {
               e.stopPropagation();
               handleOpenChecklist();
             }}
-          ></Button>
+          />
         </ButtonContainer>
       )}
-      {activeChecklist !== null && activeChecklist !== undefined && (
-        <FullScreenCard>
-          <Title>{title}</Title>
-          <ChecklistItems />
-        </FullScreenCard>
+
+      {isOpen && (
+        <>
+          <Overlay onClick={() => dispatch(chooseChecklist(null))} />
+          <FullScreenCard>
+            <Title>{checklist.title}</Title>
+            <ChecklistItems checklistId={id} />
+          </FullScreenCard>
+        </>
       )}
     </Wrapper>
   );
 };
+
 export default Checklist;

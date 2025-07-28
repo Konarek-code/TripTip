@@ -84,7 +84,6 @@ const Modal: FC = () => {
             ) : (
               <p>Loading summary...</p>
             )}
-            <br />
             <strong>Capital:</strong> <span> {selectedCountry.capital}</span>
             <br />
             <strong>Population: </strong>

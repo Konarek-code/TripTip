@@ -21,11 +21,11 @@ const FooterAction: React.FC = () => {
           <SignUpButton>Sign Up</SignUpButton>
         </SignUpWrapper>
         <BackToStartWrapper>
+          <BackToStartLabel>OR</BackToStartLabel>
           <BackToStartButton>
             Back to Start
             <HiOutlineArrowUp />
           </BackToStartButton>
-          <BackToStartLabel>OR</BackToStartLabel>
         </BackToStartWrapper>
       </Container>
     </Wrapper>

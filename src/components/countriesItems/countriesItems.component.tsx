@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { CountriesData } from "./countries.Data";
+import { CountriesData } from "../../data/countries.Data";
 import { CountryItemContainer } from "./countriesItems.style";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../store/modal/modal.reducer";

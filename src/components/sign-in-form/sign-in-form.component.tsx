@@ -6,24 +6,23 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button, { BUTTON_TYPE_CLASSES } from "../buttons/button.component";
 import FormInput from "../from-input/form-input.component";
-import stamp from "../../assets/stamp.png";
-import approved from "../../assets/approved_15433170.png";
-import Letters from "../../assets/Letters.png";
 import googleicon from "../../assets/googleicon.png";
+import RoadImage from "../../assets/RoadImage.jpg";
 import {
   FormContainer,
   LabelTitle,
-  Imagecontainer,
-  StampImage,
-  LettersImage,
   SingupLinker,
+  ImageRightSide,
+  Container,
+  Separator,
 } from "./sign-in-form.style";
 import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { InitCountriesFromFirestore } from "../../utils/countries/countries.utils";
 
 type SingInFormProps = {
   toggleForm: () => void;
@@ -35,6 +34,7 @@ type Formfields = {
 };
 
 const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<Formfields>({
     shouldUseNativeValidation: true,
   });
@@ -48,7 +48,12 @@ const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
     const { email, password } = data;
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      const userCredential = await signInAuthUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      const user = userCredential.user;
+      await InitCountriesFromFirestore(user.uid, dispatch);
     } catch (error) {
       console.log("user sign in failed", error);
     }
@@ -60,39 +65,41 @@ const SingInForm: React.FC<SingInFormProps> = ({ toggleForm }): JSX.Element => {
   };
 
   return (
-    <FormContainer>
-      <LabelTitle>Welcome traveler</LabelTitle>
-      <LettersImage src={Letters} />
-      <StampImage src={stamp} alt="airplane icon" />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          {...register("email", { maxLength: 20 })}
-          label="Email"
-          type="email"
-          required
-        />
-        <FormInput
-          {...register("password", { maxLength: 20 })}
-          label="Password"
-          type="password"
-          required
-        />
-        <Button
-          buttonType={BUTTON_TYPE_CLASSES.google}
-          type="button"
-          icon={googleicon}
-          onClick={handleGoogleSignIn}
-        >
-          Sign In with Google
-        </Button>
-        <Button type="submit">Sign In with Email</Button>
-      </form>
-      <SingupLinker onClick={toggleForm}>
-        <h3>Don&apos;t have an account?</h3>
-      </SingupLinker>
-
-      <Imagecontainer src={approved} />
-    </FormContainer>
+    <Container>
+      <FormContainer>
+        <LabelTitle>Welcome traveler</LabelTitle>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormInput
+            {...register("email", { maxLength: 20 })}
+            label="Email"
+            type="email"
+            required
+          />
+          <FormInput
+            {...register("password", { maxLength: 20 })}
+            label="Password"
+            type="password"
+            required
+          />
+          <Button type="submit">Sign In with Email</Button>
+          <Separator>
+            <span>OR</span>
+          </Separator>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            icon={googleicon}
+            onClick={handleGoogleSignIn}
+          >
+            Sign In with Google
+          </Button>
+        </form>
+        <SingupLinker onClick={toggleForm}>
+          <h3>Don&apos;t have an account?</h3>
+        </SingupLinker>
+      </FormContainer>
+      <ImageRightSide src={RoadImage} />
+    </Container>
   );
 };
 

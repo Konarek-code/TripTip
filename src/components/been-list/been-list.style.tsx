@@ -8,4 +8,9 @@ export const CountriesLayout = styled.div`
   max-width: 1400px;
   margin: 30px auto;
   gap: 20px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 `;

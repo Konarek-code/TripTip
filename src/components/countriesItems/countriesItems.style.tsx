@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const CountryItemContainer = styled.div<{ small?: boolean }>`
-  flex: 1 1 ${(props) => (props.small ?? false ? "100%" : "25%")}; // Default to false if small is null/undefined
+  flex: 1 1 ${(props) => ((props.small ?? false) ? "100%" : "25%")}; // Default to false if small is null/undefined
   height: ${(props) =>
-    props.small ?? false
+    (props.small ?? false)
       ? "100px"
       : "240px"}; // Default to false if small is null/undefined
   max-width: ${(props) =>
-    props.small ?? false
+    (props.small ?? false)
       ? "none"
       : "400px"}; // Default to false if small is null/undefined
   display: flex;
@@ -15,7 +15,7 @@ export const CountryItemContainer = styled.div<{ small?: boolean }>`
   justify-content: center;
   border: 1px solid #444;
   margin: ${(props) =>
-    props.small ?? false
+    (props.small ?? false)
       ? "10px"
       : "50px 35px 40px"}; // Default to false if small is null/undefined
   overflow: hidden;
@@ -40,11 +40,11 @@ export const CountryItemContainer = styled.div<{ small?: boolean }>`
 
   img {
     width: ${(props) =>
-      props.small ?? false
+      (props.small ?? false)
         ? "50px"
         : "100%"}; // Default to false if small is null/undefined
     height: ${(props) =>
-      props.small ?? false
+      (props.small ?? false)
         ? "50px"
         : "100%"}; // Default to false if small is null/undefined
     object-fit: cover;
@@ -59,7 +59,7 @@ export const CountryItemContainer = styled.div<{ small?: boolean }>`
     right: 0;
     margin: 0;
     padding: ${(props) =>
-      props.small ?? false
+      (props.small ?? false)
         ? "5px"
         : "10px"}; // Default to false if small is null/undefined
     z-index: 2;
@@ -67,7 +67,7 @@ export const CountryItemContainer = styled.div<{ small?: boolean }>`
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     font-size: ${(props) =>
-      props.small ?? false
+      (props.small ?? false)
         ? "0.8rem"
         : "1.2rem"}; // Default to false if small is null/undefined
     font-weight: bold;
@@ -78,7 +78,7 @@ export const CountryItemContainer = styled.div<{ small?: boolean }>`
   @media (max-width: 768px) {
     flex: 1 1 45%;
     height: ${(props) =>
-      props.small ?? false
+      (props.small ?? false)
         ? "80px"
         : "200px"}; // Default to false if small is null/undefined
   }
@@ -86,7 +86,7 @@ export const CountryItemContainer = styled.div<{ small?: boolean }>`
   @media (max-width: 480px) {
     flex: 1 1 100%;
     height: ${(props) =>
-      props.small ?? false
+      (props.small ?? false)
         ? "60px"
         : "150px"}; // Default to false if small is null/undefined
   }

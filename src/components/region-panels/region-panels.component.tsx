@@ -7,9 +7,9 @@ import {
 } from "./region panels.style";
 
 interface RegionsPanelProps {
-  regions: Record<string, string>; // Mapping of region names to background images
-  activeRegion: string | null; // Currently active region
-  onRegionClick: (region: string) => void; // Handler for region selection
+  regions: Record<string, string>;
+  activeRegion: string | null;
+  onRegionClick: (region: string) => void;
 }
 
 const RegionsPanel: React.FC<RegionsPanelProps> = ({

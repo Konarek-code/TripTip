@@ -10,25 +10,20 @@ import {
   Text,
   TextBlock,
 } from "./homeContent.styles";
+import { useSelector } from "react-redux";
+
 import contentData from "../../data/contentHome";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { selectCurrentContinent } from "../../store/homeContinent/homeContinent.selector";
 
-type Continent =
-  | "Europe"
-  | "Asia"
-  | "Africa"
-  | "North America"
-  | "South America"
-  | "Australia"
-  | "Antarctica";
+const HomeContent: React.FC = () => {
+  const currentContinet = useSelector(selectCurrentContinent);
 
-interface Props {
-  continent: Continent;
-}
-
-const HomeContent: React.FC<Props> = ({ continent }) => {
-  const data = contentData[continent] ?? [];
+  const data =
+    currentContinet !== null
+      ? contentData[currentContinet as keyof typeof contentData]
+      : [];
 
   useEffect(() => {
     AOS.init({
@@ -44,7 +39,7 @@ const HomeContent: React.FC<Props> = ({ continent }) => {
           <InnerContainer reverse={index % 2 === 1}>
             <Image
               src={item.image}
-              alt={continent}
+              alt={currentContinet ?? "City Image"}
               data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
             />
             <ContentWrapper>

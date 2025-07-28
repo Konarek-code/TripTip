@@ -17,7 +17,7 @@ const SearchBlcokComp: React.FC = () => {
           type="button"
           onClick={handleClick}
         >
-          {showContinentCard ? "Hide " : "Pick"}
+          {showContinentCard ? "Hide " : "Pick Continent"}
         </Button>
       </SearchBlockContainer>
       <ContinentCard isVisible={showContinentCard} />

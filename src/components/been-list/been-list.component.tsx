@@ -2,7 +2,7 @@ import React from "react";
 import RegionsPanel from "../region-panels/region-panels.component";
 import CountriesList from "../countriesList/countriesList.component";
 import { GroupCountriesByRegion } from "../groupByRegion/groupByRegion.component";
-import { countriesData } from "../countriesItems/countries.Data";
+import { countriesData } from "../../data/countries.Data";
 import { CountriesLayout } from "./been-list.style";
 import AsiaImg from "../../assets/Asia.jpg";
 import EuropeImg from "../../assets/Europe.jpg";
@@ -40,17 +40,17 @@ const CountriesPage: React.FC = () => {
 
   return (
     <CountriesLayout>
+      <RegionsPanel
+        regions={regionImages}
+        activeRegion={activeRegion}
+        onRegionClick={handleRegionClick}
+      />
       <CountriesList
         countries={
           isActiveRegionValid(activeRegion)
             ? groupedCountries[activeRegion]
             : []
         }
-      />
-      <RegionsPanel
-        regions={regionImages}
-        activeRegion={activeRegion}
-        onRegionClick={handleRegionClick}
       />
     </CountriesLayout>
   );

@@ -5,7 +5,6 @@ import SouthAmerica from "../assets/south-america.png";
 import Asia from "../assets/asia.png";
 import Australia from "../assets/australia.png";
 import Antarctic from "../assets/antarctic.png";
-import ALL from "../assets/All.png";
 
 export interface Continent {
   name: string;
@@ -13,7 +12,6 @@ export interface Continent {
 }
 
 export const continents: Continent[] = [
-  { name: "All", image: ALL },
   { name: "Europe", image: Europe },
   { name: "Africa", image: Africa },
   { name: "North America", image: NorthAmerica },

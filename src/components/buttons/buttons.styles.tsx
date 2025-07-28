@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const BaseButton = styled.button`
-  min-width: 165px;
+  min-width: 30px;
   width: auto;
   height: 50px;
   letter-spacing: 0.5px;
@@ -98,8 +98,11 @@ export const BurgerMenuButton = styled(BaseButton)`
   height: 30px;
   background: transparent;
   border: none;
-  z-index: 20;
-
+  z-index: 10;  
+  padding: 0;
+  width: 50px;
+  margin-right: 60px;
+  margin-left: 20px;
   div {
     width: 30px;
     height: 3px;
@@ -112,7 +115,6 @@ export const BurgerMenuButton = styled(BaseButton)`
   @media (max-width: 600px) {
     display: flex;
     padding-left: 0px;
-    margin-left: 10px;
   }
 `;
 export const SearchButton = styled(BaseButton)`

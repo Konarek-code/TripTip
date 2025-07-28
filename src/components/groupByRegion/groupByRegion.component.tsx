@@ -1,4 +1,4 @@
-import { CountriesData } from "../countriesItems/countries.Data";
+import { CountriesData } from "../../data/countries.Data";
 
 export const GroupCountriesByRegion = (
   countries: CountriesData[],

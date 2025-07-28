@@ -13,7 +13,6 @@ import {
   NavLinks,
   SignNavLinks,
   Imagebutton,
-  CardNavLink,
   SearchContainer,
 } from "./navigation.style";
 import CarLogo from "../../assets/CarLogo.png";
@@ -27,6 +26,8 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { selectShowSearchInNav } from "../../store/scroll/scroll.selector";
 
 import SearchBlockComp from "../../components/searchblock/search-block.component";
+import { setChecklists } from "../../store/checklist/checklist.reducer";
+import { setSelectedCountries } from "../../store/countrieslist/countries.reducer";
 
 const Navigation: React.FC = () => {
   const [scroll, setScroll] = useState(false);
@@ -56,6 +57,11 @@ const Navigation: React.FC = () => {
 
   const handleCloseCard = (): void => {
     dispatch(setCurrentState(false));
+  };
+  const handleSignOut = async (): Promise<void> => {
+    await signOutUser();
+    dispatch(setSelectedCountries([]));
+    dispatch(setChecklists([]));
   };
 
   return (
@@ -96,7 +102,7 @@ const Navigation: React.FC = () => {
         {currentUser ? (
           <SignNavLinks
             to="/"
-            onClick={signOutUser}
+            onClick={handleSignOut}
             showSearchInNav={showSearchInNav}
           >
             Sign Out{" "}
@@ -107,11 +113,7 @@ const Navigation: React.FC = () => {
           </SignNavLinks>
         )}
       </NavigationContainer>
-      <Card open={currentBurgerState} onClose={handleCloseCard}>
-        <CardNavLink to="trip">Your Trip </CardNavLink>
-        <CardNavLink to="trip">Your Trip </CardNavLink>
-        <CardNavLink to="trip">Your Trip </CardNavLink>
-      </Card>
+      <Card open={currentBurgerState} onClose={handleCloseCard} />
       <Outlet />
     </Fragment>
   );

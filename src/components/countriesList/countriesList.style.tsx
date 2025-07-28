@@ -9,26 +9,26 @@ export const CountriesToAdd = styled.div<RegionContentProps>`
   background: linear-gradient(135deg, #222831, #393e46);
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align content to the left */
+  align-items: flex-start;
   justify-content: center;
   padding: 30px;
   box-sizing: border-box;
   border-radius: 16px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-  width: 80%; /* Make the container wider */
-  margin-left: 5%; /* Align it more to the left side */
+  width: 80%;
+  margin-left: 5%;
 
   h1 {
     color: #ffffff;
     font-size: 2rem;
     margin-bottom: 20px;
-    text-align: left; /* Align header to the left */
+    text-align: left;
   }
 
   p {
     color: #eeeeee;
     font-size: 1.2rem;
-    text-align: left; /* Align paragraph text to the left */
+    text-align: left;
     margin-bottom: 25px;
     line-height: 1.5;
   }
@@ -64,5 +64,11 @@ export const CountriesToAdd = styled.div<RegionContentProps>`
     color: #ffffff;
     font-size: 1.2rem;
     cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 0;
+    padding: 20px;
   }
 `;

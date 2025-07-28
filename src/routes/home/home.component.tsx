@@ -5,9 +5,8 @@ import {
   Title,
   CenterSideHeader,
   SubTitle,
-  ImageHome,
+  GlobeContainer,
 } from "./home.style";
-import GlobeHeader from "../../assets/GlobeHeader.png";
 import * as React from "react";
 import Footer from "../../components/footer/footer.component";
 import SearchBlcokComp from "../../components/searchblock/search-block.component";
@@ -16,7 +15,9 @@ import { useDispatch } from "react-redux";
 import { setShowSearchInNav } from "../../store/scroll/scroll.reducer";
 import { AppDispatch } from "../../store/store";
 import HomeContent from "../../components/homeConent/homeContent";
-import FooterAction from "../../components/footerAction/footerAction";
+import HistoryTimeline from "../../components/history/history.component";
+import EuropeAtAGlance from "../../components/europeAtGlance/glanceCard.component";
+import RotatingGlobe from "../../components/globe/RotatingGlobe";
 
 const Home: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -38,17 +39,26 @@ const Home: React.FC = () => {
     <React.Fragment>
       <HomeContainer>
         <HeadContainer>
-          <ImageHome src={GlobeHeader} alt="Globe Header" />
+          <GlobeContainer>
+            <RotatingGlobe />
+          </GlobeContainer>
           <CenterSideHeader ref={searchBlockRef}>
-            <Title> Discover The World</Title>
-            <SubTitle> Explore the beauty of our planet</SubTitle>
+            <Title>
+              {" "}
+              Discover The World
+              <SubTitle>
+                Explore new destinations and embark on an unforgettable journey
+              </SubTitle>
+            </Title>
             <SearchBlcokComp></SearchBlcokComp>
           </CenterSideHeader>
         </HeadContainer>
-        <HomeContent continent={"Europe"} />
+        <HistoryTimeline />
+        <HomeContent />
+        <EuropeAtAGlance />
         <Outlet />
       </HomeContainer>
-      <FooterAction />
+
       <Footer />
     </React.Fragment>
   );

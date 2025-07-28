@@ -34,11 +34,11 @@ import { Book } from "../../components/travel-books/travel-books.component";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: "triptip-276ab.firebaseapp.com",
-  projectId: "triptip-276ab",
-  storageBucket: "triptip-276ab.appspot.com",
-  messagingSenderId: "348914137960",
-  appId: "1:348914137960:web:9066afdb2123adb3a774dd",
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
@@ -58,7 +58,7 @@ export const db = getFirestore();
 
 export const database = getDatabase(
   firebaseapp,
-  "https://triptip-276ab-default-rtdb.europe-west1.firebasedatabase.app",
+  process.env.REACT_APP_FIREBASE_DB_URL,
 );
 
 export const auth = getAuth();
@@ -113,8 +113,10 @@ export const createAuthUserWithEmailAndPassword = async (
 export const signInAuthUserWithEmailAndPassword = async (
   email: string,
   password: string,
-): Promise<UserCredential | void> => {
-  if (!email || !password) return;
+): Promise<UserCredential> => {
+  if (!email || !password) {
+    throw new Error("Email and password are required");
+  }
 
   return await signInWithEmailAndPassword(auth, email, password);
 };

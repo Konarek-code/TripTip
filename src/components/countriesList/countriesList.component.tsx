@@ -1,11 +1,15 @@
 import { FC, Key } from "react";
-import { useSelector, useDispatch } from "react-redux"; // Import useSelector
+import { useSelector, useDispatch } from "react-redux";
 import {
   selectActiveRegion,
   selectSelectedCountries,
-} from "../../store/countrieslist/countries.selector"; // Import selektora
+} from "../../store/countrieslist/countries.selector";
 import { CountriesToAdd } from "./countriesList.style";
 import { toggleCountrySelection } from "../../store/countrieslist/countries.reducer";
+
+import { auth } from "../../utils/firebase/firebase.utils";
+import { saveSelectedCountriesToFirestore } from "../../utils/countries/countries.utils";
+import store from "../../store/store";
 
 interface CountriesListProps {
   countries: Array<{ id: Key; country: string }>;
@@ -16,10 +20,28 @@ const CountriesList: FC<CountriesListProps> = ({ countries }) => {
 
   const activeRegion = useSelector(selectActiveRegion);
   const selectedCountries = useSelector(selectSelectedCountries);
-  const handleCheckboxChange = (country: string, isChecked: boolean): void => {
+
+  const handleCheckboxChange = async (
+    country: string,
+    isChecked: boolean,
+  ): Promise<void> => {
     dispatch(toggleCountrySelection(country));
+
+    const user = auth.currentUser;
+    if (user === null || user === undefined) return;
+
+    const state = store.getState();
+    const selectedCountriesByRegion = state.countries.selectedCountriesByRegion;
+
+    try {
+      await saveSelectedCountriesToFirestore(
+        user.uid,
+        selectedCountriesByRegion,
+      );
+    } catch (error) {
+      console.error("Error saving countries:", error);
+    }
   };
-  console.log(selectedCountries);
 
   return (
     <CountriesToAdd
@@ -45,7 +67,7 @@ const CountriesList: FC<CountriesListProps> = ({ countries }) => {
                   checked={selectedCountries.includes(land.country)}
                   id={land.country}
                   onChange={(e) => {
-                    handleCheckboxChange(land.country, e.target.checked);
+                    void handleCheckboxChange(land.country, e.target.checked);
                   }}
                 />
                 <label htmlFor={land.country}>{land.country}</label>

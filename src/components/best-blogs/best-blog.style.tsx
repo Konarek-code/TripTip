@@ -18,18 +18,16 @@ export const BlogsContainer = styled.div`
   background-color: ${COLORS.backgroundDark};
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  width: 90%; /* Automatyczna szerokość z limitem */
-  max-width: 1200px; /* Maksymalna szerokość kontenera */
-  margin: 0 auto; /* Wyśrodkowanie na stronie */
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
   gap: 20px;
   position: relative;
   overflow: hidden;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  padding: 20px;
 
   animation: slideIN 0.5s ease-in-out;
+
   @keyframes slideIN {
     from {
       opacity: 0;
@@ -45,6 +43,12 @@ export const BlogsContainer = styled.div`
     transform: scale(1.02);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 10px;
+    gap: 15px;
+  }
 `;
 
 export const BlogInfo = styled.div`
@@ -57,13 +61,21 @@ export const BlogInfo = styled.div`
   color: ${COLORS.textLight};
   border: 1px solid ${COLORS.border};
   width: 100%;
-  min-height: 500px;
-  height: 100%;
+  height: auto;
 
   p {
     font-size: 1.1rem;
     line-height: 1.75;
     margin-top: 10px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 15px;
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
   }
 `;
 
@@ -76,7 +88,6 @@ export const BlogAuthor = styled.div`
   background-color: ${COLORS.backgroundLight};
   border: 1px solid ${COLORS.border};
   width: 100%;
-  max-heigth: 100px;
 
   h3 {
     font-size: 1.5rem;
@@ -87,11 +98,32 @@ export const BlogAuthor = styled.div`
   p {
     font-size: 1rem;
     color: ${COLORS.textDark};
-    line-height: 1;
+    line-height: 1.4;
   }
+
   img {
-    align-self: end;
-    width: 200px;
+    align-self: flex-end;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 15px;
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+
+    img {
+      align-self: center;
+      max-width: 150px;
+    }
   }
 `;
 
@@ -103,6 +135,7 @@ export const PaginationCircles = styled.div`
   bottom: 20px;
   left: 20px;
   cursor: pointer;
+
   div {
     width: 15px;
     height: 15px;
@@ -112,6 +145,16 @@ export const PaginationCircles = styled.div`
 
     &.active {
       background-color: orange;
+    }
+  }
+
+  @media (max-width: 768px) {
+    bottom: 10px;
+    left: 10px;
+
+    div {
+      width: 12px;
+      height: 12px;
     }
   }
 `;

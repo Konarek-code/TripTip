@@ -14,6 +14,12 @@ interface Video {
   thumbnail: string;
   url: string;
 }
+const categoryColors: Record<string, string> = {
+  travel: "#1e90ff",
+  tutorial: "#20c997",
+  culture: "#f39c12",
+  technology: "#e63946",
+};
 
 interface YouTubeApiResponse {
   items: Array<{
@@ -87,9 +93,9 @@ const YouTubeGuides: React.FC = () => {
 
   return (
     <Wrapper>
-      <Title>Wybrane Filmy z YouTube</Title>
+      <Title>Youtube Guides</Title>
       {Object.keys(categoryQueries).map((category) => (
-        <Category key={category}>
+        <Category key={category} $color={categoryColors[category] ?? "#000"}>
           <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
           <VideoList>
             {videosByCategory[category]?.length > 0 ? (
@@ -102,7 +108,7 @@ const YouTubeGuides: React.FC = () => {
                 </VideoItem>
               ))
             ) : (
-              <p>Brak filmów do wyświetlenia.</p>
+              <p>No videos available to display.</p>
             )}
           </VideoList>
         </Category>

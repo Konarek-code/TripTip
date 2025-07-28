@@ -35,17 +35,15 @@ export const BooksList = styled.ul`
   gap: 40px;
   justify-content: center;
 `;
-
 export const BookItem = styled.li`
-  flex: 1 1 calc(25% - 160px); /* 4 na lini minus gap */
-  max-width: calc(25% - 160px);
+  flex: 1 1 250px;
+  max-width: 300px;
   background: #f0f0f5;
   border-radius: 14px;
   border: 1px solid #ddd;
   padding: 10px;
-  overflow: wrap;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
   text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -78,12 +76,12 @@ export const BookItem = styled.li`
     color: #555;
     margin: 0;
     height: 34px;
-    overflow: wrap;
+    overflow: hidden;
   }
 
   @media (max-width: 768px) {
-    flex: 1 1 calc(50% - 40px);
-    max-width: calc(50% - 40px);
+    flex: 1 1 45%;
+    max-width: 100%;
   }
 
   @media (max-width: 480px) {

@@ -6,18 +6,23 @@ import {
   ContinentItem,
 } from "./continents-card.style";
 import { continents } from "../../data/continents";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentContinent } from "../../store/homeContinent/homeContinent.selector";
 
-import { useDispatch } from "react-redux";
-import { setContinent } from "../../store/homeContinent/homeContinentSlice";
+import {
+  Continent,
+  setContinent,
+} from "../../store/homeContinent/homeContinentSlice";
 
 interface Props {
   isVisible: boolean;
 }
 
 const ContinentCard: React.FC<Props> = ({ isVisible }) => {
+  const selectedContinent = useSelector(selectCurrentContinent);
   const dispatch = useDispatch();
 
-  const handleSelect = (continent: string): void => {
+  const handleSelect = (continent: Continent): void => {
     dispatch(setContinent(continent));
   };
 
@@ -26,8 +31,9 @@ const ContinentCard: React.FC<Props> = ({ isVisible }) => {
       {continents.map(({ name, image }) => (
         <ContinentItem
           key={name}
+          selected={selectedContinent === name}
           onClick={() => {
-            handleSelect(name);
+            handleSelect(name as Continent);
           }}
         >
           <ContinetImages src={image} alt={`${name} continent`} />

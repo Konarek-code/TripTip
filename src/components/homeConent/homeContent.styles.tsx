@@ -6,6 +6,10 @@ export const FullWidthContainer = styled.div`
   width: 100%;
   padding: 60px 0;
   gap: 80px;
+  @media (max-width: 768px) {
+    padding: 0px;
+    gap: 40px;
+  }
 `;
 
 export const Block = styled.div<{ reverse?: boolean }>`
@@ -20,15 +24,15 @@ export const InnerContainer = styled.div<{ reverse?: boolean }>`
   flex-direction: column;
   width: 100%;
   max-width: 1250px;
-  padding: 0 100px;
+  padding: 0px;
   gap: 30px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     flex-direction: ${({ reverse = false }) =>
       reverse ? "row-reverse" : "row"};
     align-items: center;
-    justify-content: space-between;
     gap: 60px;
+    padding: 50px;
   }
 `;
 
@@ -39,6 +43,9 @@ export const Image = styled.img`
   margin: 10px auto;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
   object-fit: cover;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 700px;
 `;
 
 export const ContentWrapper = styled.div`

@@ -5,8 +5,25 @@ export const MapWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+`;
+
+export const WorldMapContainer = styled.div`
+  width: 100%;
+  max-width: 800px;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 export const RegionText = styled.p`
@@ -20,4 +37,9 @@ export const RegionText = styled.p`
   text-align: center;
   width: 100%;
   max-width: 300px;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 8px;
+    max-width: 90%;
+  }
 `;

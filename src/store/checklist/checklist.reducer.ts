@@ -1,38 +1,82 @@
+import { arrayMove } from "@dnd-kit/sortable";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface ChecklistItem {
+  id: string;
+  title: string;
+  items: string[];
+}
+
 export type ChecklistState = {
-  items: string[] | null;
-  activeChecklist: { id: string; items: string[] } | null;
+  allChecklists: ChecklistItem[];
+  activeChecklistId: string | null;
 };
 
 const INITIAL_STATE: ChecklistState = {
-  items: null,
-  activeChecklist: { id: "", items: [] },
+  allChecklists: [],
+  activeChecklistId: null,
 };
 
 export const checklistslice = createSlice({
   name: "checklist",
   initialState: INITIAL_STATE,
   reducers: {
-    chooseChecklist(
+    addChecklist(state, action: PayloadAction<{ id: string; title: string }>) {
+      state.allChecklists.push({
+        id: action.payload.id,
+        title: action.payload.title,
+        items: [],
+      });
+      state.activeChecklistId = action.payload.id;
+    },
+
+    chooseChecklist(state, action: PayloadAction<string | null>) {
+      state.activeChecklistId = action.payload;
+    },
+
+    addItemToChecklist(
       state,
-      action: PayloadAction<{ id: string; items: string[] } | null>,
+      action: PayloadAction<{ checklistId: string; item: string }>,
     ) {
-      if (action.payload !== null) {
-        state.activeChecklist = {
-          id: action.payload.id,
-          items: action.payload.items,
-        };
-      } else {
-        state.activeChecklist = null;
+      const checklist = state.allChecklists.find(
+        (c) => c.id === action.payload.checklistId,
+      );
+      if (checklist !== null && checklist !== undefined) {
+        checklist.items.push(action.payload.item);
       }
     },
-    addItemToChecklist(state, action: PayloadAction<string>) {
-      if (state.activeChecklist !== null) {
-        state.activeChecklist.items.push(action.payload);
+
+    renameChecklist(
+      state,
+      action: PayloadAction<{ id: string; newTitle: string }>,
+    ) {
+      const checklist = state.allChecklists.find(
+        (c) => c.id === action.payload.id,
+      );
+      if (checklist !== null && checklist !== undefined) {
+        checklist.title = action.payload.newTitle;
       }
+    },
+    reorderChecklists: (
+      state,
+      action: PayloadAction<{ oldIndex: number; newIndex: number }>,
+    ) => {
+      const { oldIndex, newIndex } = action.payload;
+      state.allChecklists = arrayMove(state.allChecklists, oldIndex, newIndex);
+    },
+    setChecklists(state, action: PayloadAction<ChecklistItem[]>) {
+      state.allChecklists = action.payload;
     },
   },
 });
-export const { chooseChecklist, addItemToChecklist } = checklistslice.actions;
+
+export const {
+  addChecklist,
+  chooseChecklist,
+  addItemToChecklist,
+  renameChecklist,
+  reorderChecklists,
+  setChecklists,
+} = checklistslice.actions;
+
 export default checklistslice.reducer;

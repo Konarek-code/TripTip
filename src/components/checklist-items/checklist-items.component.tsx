@@ -1,46 +1,79 @@
-import React, { FC, useState } from "react";
-import { List } from "./checklist-items.style";
+import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectActiveChecklist } from "../../store/checklist/checklist.selector";
 import { addItemToChecklist } from "../../store/checklist/checklist.reducer";
+import { RootState } from "../../store/store";
+import {
+  List,
+  Input,
+  AddButton,
+  InputContainer,
+} from "./checklist-items.style";
+import { updateChecklistInFirestore } from "../../utils/checklist/updateChecklistInFirestore";
 
-const ChecklistItems: FC = () => {
-  const [inputValue, setInputValue] = useState<string>("");
+const ChecklistItems: FC<{ checklistId: string }> = ({ checklistId }) => {
+  const checklist = useSelector((state: RootState) =>
+    state.checklist.allChecklists.find((ch) => ch.id === checklistId),
+  );
+
   const dispatch = useDispatch();
-  const activeChecklist = useSelector(selectActiveChecklist);
+  const [inputValue, setInputValue] = useState("");
 
-  const handleAddItem = (item: string): void => {
-    if (item.trim() !== "") {
-      dispatch(addItemToChecklist(item));
+  const maxItems = 15;
+
+  const handleAddItem = async (): Promise<void> => {
+    if (
+      inputValue.trim() !== "" &&
+      checklist != null &&
+      checklist.items.length < maxItems
+    ) {
+      const updatedItems = [...checklist.items, inputValue.trim()];
+      dispatch(addItemToChecklist({ checklistId, item: inputValue.trim() }));
+
+      await updateChecklistInFirestore(checklistId, { items: updatedItems });
       setInputValue("");
     }
   };
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === "Enter" && inputValue.trim() !== "") {
-      handleAddItem(inputValue);
-    }
-  };
-  // const handleback = ( ):void =>{
-  //   dispatch()
-  // }
+
   return (
     <>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => {
-          setInputValue(e.target.value);
-        }}
-        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-          e.stopPropagation();
-          handleKeyPress(e);
-        }}
-        onPointerDown={(e) => {
-          e.stopPropagation();
-        }}
-      />
+      <InputContainer>
+        <Input
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              void handleAddItem();
+            }
+          }}
+          placeholder={
+            checklist != null && checklist.items.length >= maxItems
+              ? "Max 15 items reached"
+              : "Add new item"
+          }
+          disabled={checklist != null && checklist.items.length >= maxItems}
+        />
+        <AddButton
+          onClick={() => {
+            void handleAddItem();
+          }}
+          disabled={
+            checklist != null &&
+            (checklist.items.length >= maxItems || inputValue.trim() === "")
+          }
+          title={
+            checklist != null && checklist.items.length >= maxItems
+              ? "Max 15 items reached"
+              : "Add item"
+          }
+        >
+          Add
+        </AddButton>
+      </InputContainer>
+
       <List>
-        {activeChecklist?.map((item, index) => <li key={index}>{item}</li>)}
+        {checklist?.items.map((item, idx) => <li key={idx}>{item}</li>)}
       </List>
     </>
   );

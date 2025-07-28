@@ -11,7 +11,7 @@ const breakpoints = {
 };
 
 export const NavigationContainer = styled.div<NavigationContainerProps>`
-  height: 80px;
+  height: 65px;
   width: 100%;
   background: rgb(255, 255, 255);
   display: flex;
@@ -20,8 +20,16 @@ export const NavigationContainer = styled.div<NavigationContainerProps>`
   position: sticky;
   top: 0;
   z-index: 10;
-  box-shadow: ${(props) =>
-    props.scroll ? "0 4px 8px rgba(0, 0, 0, 0.3)" : " 0px 2px 0px white;"};
+  box-shadow: ${({ scroll }) =>
+    scroll ? "0 4px 8px rgba(0, 0, 0, 0.3)" : "0px 2px 0px white"};
+  @media only screen and (max-width: ${breakpoints.tablet}) {
+    height: 55px;
+  }
+  @media only screen and (max-width: ${breakpoints.mobile}) {
+    height: 50px;
+    justify-content: space-evenly;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export const LogoContainer = styled(Link)<
@@ -35,10 +43,9 @@ export const LogoContainer = styled(Link)<
     height: 70px;
   }
   @media only screen and (max-width: 1000px) {
-    margin-left: 10px;
-
+    margin-left: 30px;
     img {
-      height: 60px;
+      height: 50px;
     }
     h2 {
       font-size: 15px;

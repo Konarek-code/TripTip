@@ -8,7 +8,7 @@ export const FlagsContainer = styled.div`
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 
   h1 {
@@ -17,11 +17,16 @@ export const FlagsContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding-bottom: 150px;
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+    }
   }
 
   @media (max-width: 480px) {
-    margin: 10px;
-    padding-bottom: 80px;
+    h1 {
+      font-size: 1.2rem;
+      margin-top: 30px;
+    }
   }
 `;

@@ -1,12 +1,21 @@
 import styled from "styled-components";
-
-export const SearchBarContainer = styled.div`
-  jsutify-content: center;
+export const Container = styled.div`
   display: flex;
-  height: 70px;
-  width: 600px;
-  margin: 20px auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
+export const SearchBarContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 20px;
+`;
+
 export const SearchBarInput = styled.input`
   width: 100%;
   padding: 10px;
@@ -19,21 +28,34 @@ export const CountriesGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px;
   width: 100%;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+  }
 `;
 
 export const CountryContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 150px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 8px;
   overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    border 0.2s ease;
+
   &:hover {
-    background-color: white;
-    border: 5px solid orange;
-    transform: scale (0.5);
+    transform: scale(1.02);
+    border: 2px solid orange;
+  }
+
+  @media (max-width: 480px) {
+    height: 100px;
   }
 `;
 

@@ -7,4 +7,8 @@ export const BeenMapContainer = styled.div`
   margin: auto;
   background-color: #eeeeee;
   flex-direction: column;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 20px;
+  }
 `;

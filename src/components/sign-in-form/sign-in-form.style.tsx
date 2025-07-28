@@ -1,38 +1,51 @@
 import styled from "styled-components";
 
-export const FormContainer = styled.form`
-    display: flex;
-    flex-direction: column;
-    height: 600px;
-    width : 700px;
-    background-color:#f4ecd9 ;
-    justify-content:center
-    padding: 10px auto;
-    margin: 30px auto;
-    border: double;
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px 3px black;
-    overflow: hidden;
-    label{
-      padding:5px;
-      margin-left: 350px;
-    }
-    @media (max-width: 800px) {
-        width:350px;
-      }
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: 92.9vh;
+  overflow: hidden;
+`;
 
-     Button{
-     margin-left: 370px;
-     margin-top: 10px;
-     width:280px;
+export const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 100vh;
+  justify-content: start;
+  padding: 20px;
+  margin-top: 100px;
+  margin-left:auto;
+  margin-right:auto;
+
+  label {
+    padding: 5px;
+  }
+
+  
+  Button {
+    margin-left: 160px;
+    margin-top: 30px;
+    width: 400px;
+
      @media (max-width: 800px) {
-      margin:15px auto;
-      }
-     }
+      width: 70%;
+      padding: 10px;
+      margin: 15px auto;
+    }
+    }
+
+    @media (max-width: 800px) {
+      width: 100%;
+      padding: 10px;
+      margin: 15px auto;
+    }
+    
+  }
 `;
 
 export const SingupLinker = styled.a`
-  margin: 5px 400px;
+  margin: 10px 275px;
   width: 300px;
   font-size: 14px;
   color: grey;
@@ -44,51 +57,45 @@ export const SingupLinker = styled.a`
 `;
 
 export const LabelTitle = styled.label`
-  position: relative;
-  padding: 0;
-  top: 5px;
-  right: 160px;
+  margin-left: 200px;
   font-size: 36px;
   font-weight: bold;
 
+  @media (max-width: 400px) {
+    margin-left: 25px;
+  }
   @media (max-width: 800px) {
-    right: 275px;
+    margin-left: 210px;
   }
 `;
 
-export const Imagecontainer = styled.img`
-  position: relative;
-  height: 100px;
-  width: 100px;
-  left: 30px;
-  bottom: 60px;
+export const ImageRightSide = styled.img`
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid black;
   @media (max-width: 800px) {
     display: none;
   }
 `;
+export const Separator = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 16px auto;
 
-export const StampImage = styled.img`
-  position:relative;
-  top:-120px;
-  left:570px;
-  height:100px;
-  width:100px;
+  span {
+    margin: 0 12px;
+    color: black;
+    font-size: 14px;
+    white-space: nowrap;
+  }
 
-  @media (max-width: 800px) {
-      height:70px;
-    width:70px;
-        top:-80px;
-         left:260px;
-      }
-}`;
-
-export const LettersImage = styled.img`
-  position:relative;
-  top:70px;
-  left:50px;
-  height:100px;
-  width:250px;
-    @media (max-width: 800px) {
-        display:none
-      }
-}`;
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: grey;
+  }
+`;

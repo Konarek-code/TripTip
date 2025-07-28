@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { countriesData } from "../../components/countriesItems/countries.Data";
+import { countriesData } from "../../data/countries.Data";
 
 export type CountriesState = {
   readonly activeRegion: string | null;
@@ -42,12 +42,10 @@ export const countriesSlice = createSlice({
       const isCountrySelected = state.selectedCountries.includes(country);
 
       if (isCountrySelected) {
-        // Usuwamy kraj z głównej listy
         state.selectedCountries = state.selectedCountries.filter(
           (c) => c !== country,
         );
 
-        // Usuwamy kraj z tablicy w regionie, jeśli region istnieje
         if (
           state.selectedCountriesByRegion[region] !== undefined &&
           Array.isArray(state.selectedCountriesByRegion[region])
@@ -57,33 +55,38 @@ export const countriesSlice = createSlice({
               (c) => c !== country,
             );
 
-          // Jeśli region stał się pusty, usuwamy go z selectedCountriesByRegion
           if (state.selectedCountriesByRegion[region].length === 0) {
-            state.selectedCountriesByRegion[region] = []; // Używamy delete
+            state.selectedCountriesByRegion[region] = [];
           }
         }
       } else {
-        // Jeśli kraj nie jest zaznaczony, dodajemy go
-
         if (state.selectedCountriesByRegion[region] === undefined) {
           state.selectedCountriesByRegion[region] = [];
         }
 
-        // Dodajemy kraj do regionu
         state.selectedCountriesByRegion[region].push(country);
 
-        // Posortowanie krajów w regionie
         state.selectedCountriesByRegion[region].sort((a, b) =>
           a.localeCompare(b),
         );
 
-        // Dodajemy kraj do głównej listy
         state.selectedCountries.push(country);
       }
     },
 
     setTotalCountriesInRegion(state, action: PayloadAction<number>) {
       state.totalCountriesInRegion = action.payload;
+    },
+    setSelectedCountries(state, action: PayloadAction<string[]>) {
+      state.selectedCountries = action.payload;
+    },
+
+    setSelectedCountriesFromFirestore(
+      state,
+      action: PayloadAction<Record<string, string[]>>,
+    ) {
+      state.selectedCountriesByRegion = action.payload;
+      state.selectedCountries = Object.values(action.payload).flat();
     },
   },
 });
@@ -93,6 +96,8 @@ export const {
   toggleCountrySelection,
   setTotalCountriesInRegion,
   setSelectedRegion,
+  setSelectedCountriesFromFirestore,
+  setSelectedCountries,
 } = countriesSlice.actions;
 
 export const countriesReducer = countriesSlice.reducer;

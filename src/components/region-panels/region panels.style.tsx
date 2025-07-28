@@ -20,11 +20,16 @@ export const RegionPanel = styled.div<{ active: boolean }>`
     transform 0.3s ease,
     box-shadow 0.3s ease;
   cursor: pointer;
+
   transform: ${({ active }) => (active ? "scale(1.05)" : "scale(1)")};
 
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    height: 100px;
   }
 `;
 

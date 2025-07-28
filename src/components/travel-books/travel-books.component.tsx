@@ -109,7 +109,7 @@ const TravelBooks: React.FC = () => {
             {groupedBooks[category].map((book) => (
               <BookItem key={book.id}>
                 <a href={book.link} target="_blank" rel="noopener noreferrer">
-                  <img src={book.img} alt={book.title} />
+                  <img src={book.img} alt={book.title} loading="lazy" />
                   <h4>{book.title}</h4>
                   <p>{book.author}</p>
                 </a>

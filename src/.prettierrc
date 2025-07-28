@@ -25,9 +25,7 @@
               {
                 "files": "*.tsx",
                 "options": {
-                  "prettier/prettier": [
-                    "off"
-                  ]
+                  "prettier/prettier": ["off"]
                 }
               }
             ]

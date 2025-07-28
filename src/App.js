@@ -15,6 +15,7 @@ import UserForms from "./routes/sign-In/userForms.component";
 import Findby from "./routes/find-by/find_by.component";
 import Been from "./routes/been/been.component";
 import TipsPage from "./routes/tips/tips.component";
+import { InitCountriesFromFirestore } from "./utils/countries/countries.utils";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const App = () => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
         createUserDocumentFromAuth(user);
+        InitCountriesFromFirestore(user.uid, dispatch);
       }
       const pickedUser =
         user && (({ accessToken, email }) => ({ accessToken, email }))(user);

@@ -9,7 +9,7 @@ export const fetchWikipediaSummary = async (
       throw new Error("Failed to fetch Wikipedia summary.");
     }
     const data = await response.json();
-    return data.extract; // Return the summary text
+    return data.extract;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch Wikipedia summary.");

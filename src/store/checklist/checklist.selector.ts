@@ -1,16 +1,23 @@
 import { createSelector } from "reselect";
-import { ChecklistState } from "./checklist.reducer";
 import { RootState } from "../store";
+
+import type { ChecklistState } from "./checklist.reducer";
 
 export const selectChecklistReducer = (state: RootState): ChecklistState =>
   state.checklist;
 
-export const selectActiveChecklist = createSelector(
+export const selectAllChecklists = createSelector(
   selectChecklistReducer,
-  (checklist: ChecklistState) => checklist.activeChecklist?.items ?? [],
+  (checklist) => checklist.allChecklists,
 );
 
 export const selectActiveChecklistId = createSelector(
   selectChecklistReducer,
-  (checklist: ChecklistState) => checklist.activeChecklist?.id ?? null,
+  (checklist) => checklist.activeChecklistId,
+);
+
+export const selectActiveChecklist = createSelector(
+  [selectAllChecklists, selectActiveChecklistId],
+  (allChecklists, activeId) =>
+    allChecklists.find((c) => c.id === activeId) ?? null,
 );

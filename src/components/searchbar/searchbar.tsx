@@ -1,5 +1,9 @@
-import React, { Fragment } from "react";
-import { SearchBarContainer, SearchBarInput } from "./searchbar.style";
+import React from "react";
+import {
+  Container,
+  SearchBarContainer,
+  SearchBarInput,
+} from "./searchbar.style";
 
 interface SearchBarProps<T> {
   searchTerm: string;
@@ -28,7 +32,7 @@ const SearchBar = <T,>({
   };
 
   return (
-    <Fragment>
+    <Container>
       <SearchBarContainer>
         <SearchBarInput
           type="text"
@@ -38,7 +42,7 @@ const SearchBar = <T,>({
         />
       </SearchBarContainer>
       {renderResults(data)}
-    </Fragment>
+    </Container>
   );
 };
 

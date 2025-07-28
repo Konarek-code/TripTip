@@ -3,7 +3,7 @@ import SearchBar from "../searchbar/searchbar";
 import Countries from "../countries/countries.component";
 import Modal from "../modal-component/modal.component";
 import { FlagsContainer } from "./flags.style";
-import { countriesData } from "../countriesItems/countries.Data";
+import { countriesData } from "../../data/countries.Data";
 
 const CountriesSearchPage: React.FC<{ selectedRegion: string | null }> = ({
   selectedRegion,

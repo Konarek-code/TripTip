@@ -1,4 +1,4 @@
-import { countriesData } from "../../components/countriesItems/countries.Data"; // Upewnij się, że ścieżka jest poprawna
+import { countriesData } from "../../data/countries.Data"; // Upewnij się, że ścieżka jest poprawna
 
 export const isRegionValid = (
   country: string,

@@ -5,7 +5,7 @@ type ModalProps = {
 };
 
 export const ModalOverlay = styled.div<ModalProps>`
-  display: ${({ isOpen }: { isOpen: boolean }) => (isOpen ? "block" : "none")};
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -13,6 +13,7 @@ export const ModalOverlay = styled.div<ModalProps>`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  overflow-y: auto; /* żeby można było scrollować na telefonie */
 `;
 
 export const ModalContent = styled.div`
@@ -23,6 +24,15 @@ export const ModalContent = styled.div`
   border-radius: 10px;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    margin: 40px 10px;
+    max-width: 95%;
+    padding: 15px;
+    border-radius: 8px;
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -30,6 +40,24 @@ export const ModalHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+  }
+
+  p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -41,8 +69,15 @@ export const CloseButton = styled.button`
   position: absolute;
   top: 10px;
   left: 10px;
+
   &:hover {
     color: #ff4500;
+  }
+
+  @media (max-width: 480px) {
+    top: 5px;
+    left: 5px;
+    font-size: 28px;
   }
 `;
 
@@ -53,6 +88,20 @@ export const FlagImage = styled.img`
   width: 80px;
   height: auto;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    width: 120px;
+  }
+
+  @media (max-width: 480px) {
+    position: static;
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export const ModalBody = styled.div`
@@ -61,12 +110,23 @@ export const ModalBody = styled.div`
   align-items: stretch;
   position: relative;
   margin-top: 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-top: 20px;
+  }
 `;
 
 export const Divider = styled.div`
   width: 2px;
   background-color: #ddd;
   margin: 0 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 2px;
+    margin: 20px 0;
+  }
 `;
 
 export const InformationContent = styled.div`
@@ -84,6 +144,12 @@ export const InformationContent = styled.div`
     margin-bottom: 10px;
     color: #222;
   }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding-right: 0;
+    font-size: 16px;
+  }
 `;
 
 export const ActionContainer = styled.div`
@@ -94,6 +160,19 @@ export const ActionContainer = styled.div`
   align-items: center;
   gap: 20px;
   padding-left: 20px;
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+    margin-top: 5px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 15px;
+  }
 `;
 
 export const ActionButton = styled.button`
@@ -110,12 +189,23 @@ export const ActionButton = styled.button`
   &:hover {
     background-color: #e63e00;
   }
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 `;
 
 export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 15px;
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Icon = styled.img`
@@ -140,5 +230,10 @@ export const Icon = styled.img`
     transform: scale(1.1) rotate(0);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border: 2px solid #e63e00;
+  }
+
+  @media (max-width: 480px) {
+    width: 48px;
+    height: 48px;
   }
 `;
